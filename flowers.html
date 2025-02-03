@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blowing Flower Shapes</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #87CEEB, #B0E0E6);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: blow 8s linear infinite;
+        }
+
+        @keyframes blow {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-200px) rotate(180deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-400px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .ground {
+            width: 100%;
+            height: 100px;
+            background: green;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="ground"></div>
+
+    <script>
+        // Function to create an SVG flower shape
+        function createFlowerShape() {
+            const svgNS = "http://www.w3.org/2000/svg";
+            const flower = document.createElementNS(svgNS, "svg");
+            flower.setAttribute("class", "flower");
+            flower.setAttribute("width", "50");
+            flower.setAttribute("height", "50");
+            flower.setAttribute("viewBox", "0 0 50 50");
+
+            // Create flower petals
+            for (let i = 0; i < 5; i++) {
+                const petal = document.createElementNS(svgNS, "ellipse");
+                petal.setAttribute("cx", "25");
+                petal.setAttribute("cy", "25");
+                petal.setAttribute("rx", "15");
+                petal.setAttribute("ry", "25");
+                petal.setAttribute("fill", `hsl(${Math.random() * 360}, 70%, 70%)`);
+                petal.setAttribute("transform", `rotate(${i * 72}, 25, 25)`); // Rotate each petal
+                flower.appendChild(petal);
+            }
+
+            // Create flower center
+            const center = document.createElementNS(svgNS, "circle");
+            center.setAttribute("cx", "25");
+            center.setAttribute("cy", "25");
+            center.setAttribute("r", "10");
+            center.setAttribute("fill", "yellow");
+            flower.appendChild(center);
+
+            return flower;
+        }
+
+        function createFlower() {
+            const flower = createFlowerShape();
+            flower.style.left = `${Math.random() * window.innerWidth}px`;
+            flower.style.animationDuration = `${Math.random() * 5 + 3}s`; // Random speed
+            document.body.appendChild(flower);
+
+            // Remove flower after animation ends
+            flower.addEventListener("animationend", () => {
+                flower.remove();
+            });
+        }
+
+        // Create flowers at regular intervals
+        setInterval(createFlower, 1000);
+    </script>
+</body>
+</html>
