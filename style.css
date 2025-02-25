@@ -1,51 +1,84 @@
+:root {
+    --primary: #2c3e50;
+    --accent: #27ae60;
+    --text: #333;
+    --bg: #fff;
+    --section-bg: #f8f9fa;
+}
+
+[data-theme="dark"] {
+    --primary: #27ae60;
+    --accent: #2c3e50;
+    --text: #fff;
+    --bg: #1a1a1a;
+    --section-bg: #2d2d2d;
+}
+
+* {
+    box-sizing: border-box;
+    transition: background 0.3s, color 0.3s;
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f9e3e3;
-    font-family: 'Arial', sans-serif;
-    flex-direction: column;
-  }
-  
-  .container {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.header {
     text-align: center;
-  }
-  
-  h1 {
-    font-size: 2.5em;
-    color: #d32f2f;
-  }
-  
-  .buttons {
-    margin-top: 20px;
-  }
-  
-  .yes-button {
-    font-size: 1.5em;
-    padding: 10px 20px;
-    margin-right: 10px;
-    background-color: #4caf50;
-    color: white;
+    padding: 3rem 1rem;
+    position: relative;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .no-button {
-    font-size: 1.5em;
-    padding: 10px 20px;
-    background-color: #f44336;
+    font-size: 1.5rem;
+}
+
+.section {
+    background: var(--section-bg);
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-card {
+    background: var(--bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--accent);
     color: white;
+    padding: 1rem;
+    border-radius: 50%;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .gif_container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    /* Responsive styles */
+}
