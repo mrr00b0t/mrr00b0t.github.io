@@ -4,29 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tint Naing Win - Cybersecurity Specialist</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #27ae60;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: var(--text);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h1 { color: var(--primary); }
+        h2 { color: var(--accent); border-bottom: 2px solid #eee; }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .section {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover { text-decoration: underline; }
+
+        @media print {
+            body { padding: 0; }
+            .section { background: none; }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <button id="theme-toggle" class="theme-toggle">🌓</button>
-        <div class="header-content">
-            <h1 class="name">Tint Naing Win</h1>
-            <h2 class="title">Cybersecurity Specialist | Junior Pentester</h2>
-            <div class="contact-bar">
-                <div class="contact-item">
-                    <svg class="icon">...</svg>
-                    +66968166403
-                </div>
-                <!-- Repeat for other contact items -->
-            </div>
+    <header>
+        <h1>Tint Naing Win</h1>
+        <h3>Junior Pentester</h3>
+        <div class="contact-bar">
+            <div>📞 +66968166403</div>
+            <div>📧 <a href="mailto:optester6823@gmail.com">optester6823@gmail.com</a></div>
+            <div>📍 Bangkok, Thailand</div>
+            <div>💻 <a href="https://github.com/mrr00b0t">github.com/mrr00b0t</a></div>
         </div>
     </header>
 
-    <main class="main-content">
-        <!-- Sections same as previous but with "section" class -->
-    </main>
+    <section class="section">
+        <h2>Professional Summary</h2>
+        <p>A highly motivated Cybersecurity Specialist and Junior Pentester with hands-on experience in web application security, penetration testing, and vulnerability assessment. Skilled in utilizing Kali Linux for security testing and risk mitigation.</p>
+    </section>
 
-    <button id="pdf-button" class="floating-button">Download PDF</button>
+    <section class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div><strong>Penetration Testing:</strong> OWASP Top 10, Burp Suite, Metasploit</div>
+            <div><strong>Web Security:</strong> XSS Prevention, SQLi Mitigation, CSRF Protection</div>
+            <div><strong>Tools & OS:</strong> Kali Linux, Nmap, Wireshark, Nessus</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Experience</h2>
+        <h3>Cybersecurity Specialist | Junior Pentester</h3>
+        <p><em>Freelance / Self-Employed (Jan 2023 – Present)</em></p>
+        <ul>
+            <li>Conducted 50+ penetration tests on web applications</li>
+            <li>Identified and mitigated critical vulnerabilities</li>
+            <li>Collaborated on open-source security projects</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>Education</h2>
+        <p><strong>B.Sc. Digital Technology Innovation</strong><br>
+        Kasem Bundit University · Expected 2027</p>
+        
+        <p><strong>B.Eng. Mechanical Engineering</strong><br>
+        GTI Yenangyaung · Graduated 2025</p>
+    </section>
+
+    <section class="section">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Junior Web Security Certification</li>
+            <li>eJPT (eLearnSecurity Junior Penetration Tester)</li>
+        </ul>
+    </section>
 </body>
 </html>
