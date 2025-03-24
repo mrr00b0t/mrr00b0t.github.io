@@ -5,42 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tint Naing Win - Cybersecurity Specialist</title>
     <style>
+        /* Root variables for color scheme */
         :root {
             --primary: #2c3e50;
             --accent: #27ae60;
             --text: #333;
         }
 
+        /* Body styling */
         body {
             font-family: 'Segoe UI', sans-serif;
             line-height: 1.6;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
+            margin: 0;
+            padding: 0;
             color: var(--text);
+            display: flex;
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?tech,security') no-repeat center center fixed;
+            background-size: cover;
         }
 
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
+            overflow-y: auto;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--accent);
+            color: #fff;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 240px;
+            padding: 2rem;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header styling */
         header {
             text-align: center;
             margin-bottom: 2rem;
             border-bottom: 3px solid var(--accent);
         }
 
-        h1 { color: var(--primary); }
-        h2 { color: var(--accent); border-bottom: 2px solid #eee; }
-
-        .contact-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 1rem 0;
+        h1 {
+            color: var(--primary);
         }
 
+        h3 {
+            color: var(--accent);
+        }
+
+        h2 {
+            color: var(--accent);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Section styling */
         .section {
             margin: 2rem 0;
             padding: 1rem;
-            background: #f8f9fa;
+            background: transparent;
             border-radius: 8px;
         }
 
@@ -50,80 +101,109 @@
             gap: 1rem;
         }
 
+        /* Links styling */
         a {
             color: var(--accent);
             text-decoration: none;
         }
 
-        a:hover { text-decoration: underline; }
+        a:hover {
+            text-decoration: underline;
+        }
 
-        @media print {
-            body { padding: 0; }
-            .section { background: none; }
+        /* Animation for smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Media Queries for mobile */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Tint Naing Win</h1>
-        <h3>Junior Pentester</h3>
-        <div class="contact-bar">
-            <div>📞 +66968166403</div>
-            <div>📧 <a href="mailto:optester6823@gmail.com">optester6823@gmail.com</a></div>
-            <div>📍 Bangkok, Thailand</div>
-            <div>💻 <a href="https://github.com/mrr00b0t">github.com/mrr00b0t</a></div>
-        </div>
-    </header>
 
-    <section class="section">
-        <h2>Professional Summary</h2>
-        <p>A highly motivated Cybersecurity Specialist and Junior Pentester with hands-on experience in web application security, penetration testing, and vulnerability assessment. Skilled in utilizing Kali Linux for security testing and risk mitigation.</p>
-    </section>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#summary">Professional Summary</a>
+        <a href="#skills">Technical Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#status">Relationship Status</a>
+    </div>
 
-    <section class="section">
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-            <div><strong>Penetration Testing:</strong> OWASP Top 10, Burp Suite, Metasploit</div>
-            <div><strong>Web Security:</strong> XSS Prevention, SQLi Mitigation, CSRF Protection</div>
-            <div><strong>Tools & OS:</strong> Kali Linux, Nmap, Wireshark, Nessus</div>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Tint Naing Win</h1>
+            <h3>Junior Pentester</h3>
+            <div>
+                <p>📞 +66968166403 | 📧 <a href="mailto:optester6823@gmail.com">optester6823@gmail.com</a> | 📍 Bangkok, Thailand | 💻 <a href="https://github.com/mrr00b0t">github.com/mrr00b0t</a></p>
+            </div>
+        </header>
 
-    <section class="section">
-        <h2>Experience</h2>
-        <h3>Junior Pentester</h3>
-        <p><em>Freelance / Self-Employed (Jan 2023 – Present)</em></p>
-        <ul>
-            <li>Conducted 50+ penetration tests on web applications</li>
-            <li>Identified and mitigated critical vulnerabilities</li>
-            <li>Collaborated on open-source security projects</li>
-        </ul>
-    </section>
+        <section id="summary" class="section">
+            <h2>Professional Summary</h2>
+            <p>A highly motivated Cybersecurity Specialist and Junior Pentester with hands-on experience in web application security, penetration testing, and vulnerability assessment. Skilled in utilizing Kali Linux for security testing and risk mitigation.</p>
+        </section>
 
-    <section class="section">
-        <h2>Education</h2>
-        <p><strong>B.Sc. Digital Technology Innovation</strong><br>
-        Kasem Bundit University · Expected 2027</p>
-        
-        <p><strong>B.Eng. Mechanical Engineering</strong><br>
-        GTI Yenangyaung · Graduated 2025</p>
-    </section>
+        <section id="skills" class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div><strong>Penetration Testing:</strong> Burp Suite, Metasploit ,
+                  And More</div>
+                <div><strong>Web Security:</strong> XSS Prevention, SQLi Mitigation, CSRF Protection,
+                  OWASP Top 10,
+                  And More
+                </div>
+                <div><strong>Tools & OS:</strong> Kali Linux, Nmap, Wireshark, Nessus, Nuclei , Sqlmap , Some own tools and More
+                </div>
+            </div>
+        </section>
 
-    <section class="section">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Junior Web Security Certification</li>
-            <li>eJPT (eLearnSecurity Junior Penetration Tester)</li>
-            <li>Ethical Hacker</li>
-        </ul>
-    </section>
+        <section id="experience" class="section">
+            <h2>Experience</h2>
+            <h3>Junior Pentester</h3>
+            <p><em>Freelance / Self-Employed (Jan 2023 – Present)</em></p>
+            <ul>
+                <li>Conducted 50+ penetration tests on web applications</li>
+                <li>Identified and mitigated critical vulnerabilities</li>
+                <li>Collaborated on open-source security projects</li>
+            </ul>
+        </section>
 
-    <section class="section">
-        <h2>Relationship status</h2>
-        <ul>
-            <li>Single / Avaliable </li>
-        </ul>
-    </section>
-    
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <p><strong>B.Sc. Digital Technology Innovation</strong><br>
+            Kasem Bundit University · Expected 2027</p>
+            
+            <p><strong>B.Eng. Mechanical Engineering</strong><br>
+            GTI Yenangyaung · Graduated 2025</p>
+        </section>
+
+        <section id="certifications" class="section">
+            <h2>Certifications</h2>
+            <ul>
+                <li>Junior Web Security Certification</li>
+                <li>eJPT (eLearnSecurity Junior Penetration Tester)</li>
+                <li>Ethical Hacker</li>
+            </ul>
+        </section>
+
+        <section id="status" class="section">
+            <h2>Relationship Status</h2>
+            <ul>
+                <li>Single / Available</li>
+            </ul>
+        </section>
+    </div>
 </body>
 </html>
