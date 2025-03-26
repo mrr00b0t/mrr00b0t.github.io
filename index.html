@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tint Naing Win - Cybersecurity Specialist and Junior Pentester.">
+    <meta property="og:title" content="Tint Naing Win - Cybersecurity Specialist">
+    <meta property="og:description" content="Tint Naing Win - Cybersecurity Specialist and Junior Pentester.">
+    <meta property="og:image" content="path/to/social_image.jpg">
+    <meta property="og:url" content="https://github.com/mrr00b0t/mrr00b0t.github.io">
     <title>Tint Naing Win - Cybersecurity Specialist</title>
+    <link rel="stylesheet" href="styles/main.css">
     <style>
         /* Root variables for color scheme */
         :root {
@@ -21,7 +27,7 @@
             color: var(--text);
             display: flex;
             height: 100vh;
-            background: url('https://source.unsplash.com/1600x900/?tech,security') no-repeat center center fixed;
+            background: url('path/to/local/image.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -131,18 +137,18 @@
 <body>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <nav class="sidebar" role="navigation">
         <a href="#summary">Professional Summary</a>
         <a href="#skills">Technical Skills</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#certifications">Certifications</a>
         <a href="#status">Relationship Status</a>
-    </div>
+    </nav>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <header>
+    <main class="main-content">
+        <header role="banner">
             <h1>Tint Naing Win</h1>
             <h3>Junior Pentester</h3>
             <div>
@@ -152,20 +158,15 @@
 
         <section id="summary" class="section">
             <h2>Professional Summary</h2>
-            <p>A highly motivated Cybersecurity Specialist and Junior Pentester with hands-on experience in web application security, penetration testing, and vulnerability assessment. Skilled in utilizing Kali Linux for security testing and risk mitigation.</p>
+            <p>A highly motivated Cybersecurity Specialist and Junior Pentester with hands-on experience in web application security, penetration testing, and vulnerability assessment. Skilled in...</p>
         </section>
 
         <section id="skills" class="section">
             <h2>Technical Skills</h2>
             <div class="skills-grid">
-                <div><strong>Penetration Testing:</strong> Burp Suite, Metasploit ,
-                  And More</div>
-                <div><strong>Web Security:</strong> XSS Prevention, SQLi Mitigation, CSRF Protection,
-                  OWASP Top 10,
-                  And More
-                </div>
-                <div><strong>Tools & OS:</strong> Kali Linux, Nmap, Wireshark, Nessus, Nuclei , Sqlmap , Some own tools and More
-                </div>
+                <div><strong>Penetration Testing:</strong> Burp Suite, Metasploit , And More</div>
+                <div><strong>Web Security:</strong> XSS Prevention, SQLi Mitigation, CSRF Protection, OWASP Top 10, And More</div>
+                <div><strong>Tools & OS:</strong> Kali Linux, Nmap, Wireshark, Nessus, Nuclei , Sqlmap , Some own tools and More</div>
             </div>
         </section>
 
@@ -204,6 +205,8 @@
                 <li>Single / Available</li>
             </ul>
         </section>
-    </div>
+    </main>
+
+    <script src="scripts/main.js" defer></script>
 </body>
 </html>
