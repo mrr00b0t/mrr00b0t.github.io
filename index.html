@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Products Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> </head>
+<body>
+    <header>
+        <div class="header-content">
+            <button id="header-back-button" class="header-back-button" style="display: none;">&larr; Back</button>
+            <span id="persistent-header-message">Welcome!</span> <button id="theme-switcher">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Our Digital Products</h2>
+            <div id="product-list" class="product-grid">
+                </div>
+        </section>
+
+        <section id="productOptions" style="display: none;">
+            <h2 id="product-options-title">Product Name</h2>
+            <div class="button-group">
+                <button id="show-details-button" class="button-style">Product Details</button>
+                <button id="show-plans-button" class="button-style">View Plans & Pricing</button>
+            </div>
+        </section>
+
+        <section id="productDetails" style="display:none;">
+            <div id="product-details-content">
+                </div>
+        </section>
+
+        <section id="planList" style="display: none;">
+            <div id="plan-list-content">
+                </div>
+        </section>
+
+        <section id="paymentMethod" style="display: none;">
+            <div id="payment-method-list">
+                </div>
+        </section>
+
+        <section id="paymentInstructions" style="display: none;">
+            <div id="payment-instructions-content">
+                </div>
+        </section>
+
+        <section id="receipt" style="display: none;">
+            <h2>Thank You!</h2>
+            <div class="receipt-box">
+                <div id="receipt-content">
+                    </div>
+                <button id="copy-receipt-button" class="button-style secondary-button full-width">Copy Receipt</button>
+            </div>
+        </section>
+
+        <section id="admin-note-section" style="display: none;"> <h2 id="admin-note-title"></h2> <div id="admin-note-content-div" class="admin-note-content">
+                </div>
+        </section>
+
+        <section id="qa-section">
+            <h2 id="qa-title">Frequently Asked Questions</h2> <div id="qa-grid-div" class="qa-grid">
+                </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content"> <a href="https://t.me/Tyrell_TheForgottenOne" target="_blank" rel="noopener noreferrer" class="footer-link">Contact Developer</a>
+            <span class="footer-separator">&bull;</span>
+            <a href="https://github.com/mrr00b0t" target="_blank" rel="noopener noreferrer" class="footer-link">Create Your Own Website</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script> </body>
+</html>

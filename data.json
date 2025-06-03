@@ -1,0 +1,129 @@
+{
+  "siteConfig": {
+    "persistentHeaderMessage": "🎉 Final Sale! Don't miss out! 🎉",
+    "telegramBotLink": "https://t.me/Tyrell_TheForgotten",
+    "developerTelegramLink": "https://t.me/Tyrell_TheForgottenOne"
+  },
+  "products": [
+    {
+      "id": "prod1",
+      "name": "Omega Art Suite Pro",
+      "description": "The ultimate collection of 100+ high-resolution digital assets, including textures, brushes, and 3D models. Perfect for professional artists and designers. Commercial license included.",
+      "isOutOfStock": false,
+      "plans": [
+        {
+          "id": "plan1_1",
+          "name": "Monthly License",
+          "price": 20,
+          "mmksPrice": 90000,
+          "duration": "1 Month",
+          "isOutOfStock": false
+        },
+        {
+          "id": "plan1_2",
+          "name": "Annual License",
+          "price": 199,
+          "mmksPrice": 895000,
+          "duration": "1 Year (Best Value!)",
+          "isOutOfStock": false
+        },
+        {
+          "id": "plan1_3",
+          "name": "Lifetime Deal",
+          "price": 499,
+          "mmksPrice": 2245000,
+          "duration": "Lifetime Access",
+          "isOutOfStock": true
+        }
+      ]
+    },
+    {
+      "id": "prod2",
+      "name": "AI-Powered Content Generator",
+      "description": "Generate high-quality articles, scripts, and marketing copy in seconds with our advanced AI tool. Includes various templates and customization options.",
+      "isOutOfStock": false,
+      "plans": [
+        {
+          "id": "plan2_1",
+          "name": "Starter Pack (50 Credits)",
+          "price": 15,
+          "mmksPrice": 67500,
+          "duration": "One-time",
+          "isOutOfStock": false
+        },
+        {
+          "id": "plan2_2",
+          "name": "Pro Monthly (300 Credits/mo)",
+          "price": 49,
+          "mmksPrice": 220000,
+          "duration": "Monthly Subscription",
+          "isOutOfStock": false
+        }
+      ]
+    },
+    {
+      "id": "prod_13aebb53",
+      "name": "Tryhackme",
+      "description": "Learn Hacking",
+      "isOutOfStock": false,
+      "plans": []
+    },
+    {
+      "id": "prod_3f782947",
+      "name": "Testing",
+      "description": "Testing",
+      "isOutOfStock": false,
+      "plans": [
+        {
+          "id": "3f782947_plan_e56bb688",
+          "name": "1 Month",
+          "price": 10.0,
+          "mmksPrice": 45000,
+          "duration": "1 Month",
+          "isOutOfStock": false
+        }
+      ]
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": "kpay",
+      "name": "KPay Transfer",
+      "instructions": {
+        "accountName": "Your KPay Business Name",
+        "accountNumber": "09X-XXX-XXXX",
+        "notes": "Please include your Order ID (from receipt) in the KPay payment reference."
+      }
+    },
+    {
+      "id": "binance",
+      "name": "Binance (UID Payment)",
+      "instructions": {
+        "uid": "YOUR_BINANCE_UID",
+        "currency": "USDT only",
+        "notes": "Send to Binance UID. A transaction screenshot after payment is highly recommended."
+      }
+    }
+  ],
+  "adminNote": {
+    "title": "Important Notice from Admin",
+    "isVisible": true,
+    "content": [
+      "Welcome! All digital product deliveries are processed after payment confirmation via Telegram.",
+      "Our current support hours are 10:00 AM to 11:00 PM (GMT+7). Inquiries or payments made outside these hours will be addressed on the following day.",
+      "Please ensure you provide the correct details during payment and when contacting us on Telegram."
+    ]
+  },
+  "faq": [
+    {
+      "id": "faq1",
+      "question": "How quickly will I receive my product?",
+      "answer": "Once your payment is confirmed on Telegram, products are typically delivered within 5-30 minutes during our operational hours. For payments outside these hours, delivery will be on the next business day."
+    },
+    {
+      "id": "faq2",
+      "question": "What if I have trouble with my payment?",
+      "answer": "If you encounter any issues during the payment process, please take a screenshot and contact us immediately on Telegram using the link provided on the receipt page. We'll assist you as quickly as possible."
+    }
+  ]
+}
