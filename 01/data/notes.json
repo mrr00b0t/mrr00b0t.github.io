@@ -1,0 +1,37 @@
+[
+  {
+    "id": "delivery-time",
+    "title": "Delivery Information",
+    "icon": "fas fa-clock",
+    "content": "All digital products are delivered within 1-24 hours after payment confirmation. Most orders are processed within 1-2 hours during business hours.",
+    "priority": 1
+  },
+  {
+    "id": "payment-verification",
+    "title": "Payment Verification",
+    "icon": "fas fa-shield-alt",
+    "content": "Please ensure you send the exact amount shown in your selected currency. Screenshots of payment confirmation may be required for verification purposes.",
+    "priority": 2
+  },
+  {
+    "id": "account-sharing",
+    "title": "Account Usage Policy",
+    "icon": "fas fa-users",
+    "content": "Purchased accounts are for personal use only. Sharing credentials or reselling accounts is strictly prohibited and may result in account termination.",
+    "priority": 3
+  },
+  {
+    "id": "support-hours",
+    "title": "Customer Support",
+    "icon": "fas fa-headset",
+    "content": "Our support team is available 24/7 via Telegram. For urgent issues, please contact us immediately after purchase with your receipt ID.",
+    "priority": 4
+  },
+  {
+    "id": "refund-policy",
+    "title": "Refund Policy",
+    "icon": "fas fa-undo",
+    "content": "Refunds are available within 24 hours of purchase if the product is not delivered or does not work as described. Digital products cannot be returned once delivered.",
+    "priority": 5
+  }
+]

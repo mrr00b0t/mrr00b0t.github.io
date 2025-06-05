@@ -1,0 +1,210 @@
+[
+  {
+    "id": "spotify-premium",
+    "name": "Spotify Premium",
+    "description": "Unlimited music streaming with offline downloads and no ads",
+    "icon": "fab fa-spotify",
+    "category": "Music",
+    "plans": [
+      {
+        "id": "spotify-1month",
+        "name": "Individual",
+        "duration": "1 Month",
+        "description": "Single account premium access",
+        "currencies": [
+          {"currency": "USD", "price": 9.99},
+          {"currency": "MMK", "price": 18000},
+          {"currency": "THB", "price": 350}
+        ]
+      },
+      {
+        "id": "spotify-3months",
+        "name": "Individual",
+        "duration": "3 Months",
+        "description": "Single account premium access for 3 months",
+        "currencies": [
+          {"currency": "USD", "price": 25.99},
+          {"currency": "MMK", "price": 50000},
+          {"currency": "THB", "price": 950}
+        ]
+      },
+      {
+        "id": "spotify-family",
+        "name": "Family Plan",
+        "duration": "1 Month",
+        "description": "Up to 6 premium accounts for family members",
+        "currencies": [
+          {"currency": "USD", "price": 15.99},
+          {"currency": "MMK", "price": 28000},
+          {"currency": "THB", "price": 550}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "netflix-premium",
+    "name": "Netflix Premium",
+    "description": "Watch unlimited movies and TV shows in Ultra HD",
+    "icon": "fas fa-film",
+    "category": "Entertainment",
+    "plans": [
+      {
+        "id": "netflix-basic",
+        "name": "Basic Plan",
+        "duration": "1 Month",
+        "description": "Watch on 1 screen in Standard Definition",
+        "currencies": [
+          {"currency": "USD", "price": 8.99},
+          {"currency": "MMK", "price": 16000},
+          {"currency": "THB", "price": 320}
+        ]
+      },
+      {
+        "id": "netflix-standard",
+        "name": "Standard Plan",
+        "duration": "1 Month", 
+        "description": "Watch on 2 screens in HD",
+        "currencies": [
+          {"currency": "USD", "price": 13.99},
+          {"currency": "MMK", "price": 25000},
+          {"currency": "THB", "price": 480}
+        ]
+      },
+      {
+        "id": "netflix-premium",
+        "name": "Premium Plan",
+        "duration": "1 Month",
+        "description": "Watch on 4 screens in Ultra HD",
+        "currencies": [
+          {"currency": "USD", "price": 17.99},
+          {"currency": "MMK", "price": 32000},
+          {"currency": "THB", "price": 620}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chatgpt-plus",
+    "name": "ChatGPT Plus",
+    "description": "Access to GPT-4, faster responses, and priority access",
+    "icon": "fas fa-robot",
+    "category": "AI Tools",
+    "plans": [
+      {
+        "id": "chatgpt-monthly",
+        "name": "Plus Subscription",
+        "duration": "1 Month",
+        "description": "Full access to ChatGPT Plus features",
+        "currencies": [
+          {"currency": "USD", "price": 20.00},
+          {"currency": "MMK", "price": 38000},
+          {"currency": "THB", "price": 720}
+        ]
+      },
+      {
+        "id": "chatgpt-3months",
+        "name": "Plus Subscription",
+        "duration": "3 Months",
+        "description": "3 months of ChatGPT Plus with discount",
+        "currencies": [
+          {"currency": "USD", "price": 55.00},
+          {"currency": "MMK", "price": 105000},
+          {"currency": "THB", "price": 1980}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "youtube-premium",
+    "name": "YouTube Premium",
+    "description": "Ad-free videos, background play, and YouTube Music included",
+    "icon": "fab fa-youtube",
+    "category": "Entertainment",
+    "plans": [
+      {
+        "id": "youtube-individual",
+        "name": "Individual Plan",
+        "duration": "1 Month",
+        "description": "Ad-free YouTube + YouTube Music",
+        "currencies": [
+          {"currency": "USD", "price": 11.99},
+          {"currency": "MMK", "price": 22000},
+          {"currency": "THB", "price": 420}
+        ]
+      },
+      {
+        "id": "youtube-family",
+        "name": "Family Plan",
+        "duration": "1 Month",
+        "description": "Up to 6 family members",
+        "currencies": [
+          {"currency": "USD", "price": 17.99},
+          {"currency": "MMK", "price": 32000},
+          {"currency": "THB", "price": 620}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "disney-plus",
+    "name": "Disney+",
+    "description": "Stream Disney, Pixar, Marvel, Star Wars & National Geographic",
+    "icon": "fas fa-magic",
+    "category": "Entertainment",
+    "plans": [
+      {
+        "id": "disney-monthly",
+        "name": "Monthly Plan",
+        "duration": "1 Month",
+        "description": "Unlimited streaming of Disney+ content",
+        "currencies": [
+          {"currency": "USD", "price": 7.99},
+          {"currency": "MMK", "price": 15000},
+          {"currency": "THB", "price": 290}
+        ]
+      },
+      {
+        "id": "disney-annual",
+        "name": "Annual Plan",
+        "duration": "12 Months",
+        "description": "12 months of Disney+ with 2 months free",
+        "currencies": [
+          {"currency": "USD", "price": 79.99},
+          {"currency": "MMK", "price": 150000},
+          {"currency": "THB", "price": 2800}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "disney-plus",
+    "name": "Disney+",
+    "description": "Stream Disney, Pixar, Marvel, Star Wars & National Geographic",
+    "icon": "fas fa-magic",
+    "category": "Entertainment",
+    "plans": [
+      {
+        "id": "disney-monthly",
+        "name": "Monthly Plan",
+        "duration": "1 Month",
+        "description": "Unlimited streaming of Disney+ content",
+        "currencies": [
+          {"currency": "USD", "price": 79999.9999999},
+          {"currency": "MMK", "price": 15000.00},
+          {"currency": "THB", "price": 290.0000}
+        ]
+      },
+      {
+        "id": "disney-annual",
+        "name": "Annual Plan",
+        "duration": "12 Months",
+        "description": "12 months of Disney+ with 2 months free",
+        "currencies": [
+          {"currency": "USD", "price": 79.99},
+          {"currency": "MMK", "price": 150000},
+          {"currency": "THB", "price": 2800}
+        ]
+      }
+    ]
+  }
+]

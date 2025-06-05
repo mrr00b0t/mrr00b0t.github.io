@@ -1,0 +1,81 @@
+[
+  {
+    "id": "how-it-works",
+    "question": "How does the purchase process work?",
+    "answer": "Simply select your desired product and plan, choose your preferred currency and payment method, complete the payment, then click 'Payment Done'. You'll receive your product details within 24 hours via Telegram.",
+    "category": "General",
+    "priority": 1
+  },
+  {
+    "id": "payment-methods",
+    "question": "What payment methods do you accept?",
+    "answer": "We accept various payment methods including KBZ Pay, CB Pay, Wave Pay, AYA Pay, bank transfers, and PayPal. The available methods may vary depending on your selected currency.",
+    "category": "Payment",
+    "priority": 2
+  },
+  {
+    "id": "delivery-time",
+    "question": "How long does it take to receive my purchase?",
+    "answer": "Most orders are delivered within 1-2 hours during business hours. Maximum delivery time is 24 hours. You'll be contacted via Telegram once your order is ready.",
+    "category": "Delivery",
+    "priority": 3
+  },
+  {
+    "id": "account-warranty",
+    "question": "Do you provide warranty for the accounts?",
+    "answer": "Yes, we provide a 30-day warranty for all premium accounts. If an account stops working within 30 days due to our fault, we'll provide a replacement at no extra cost.",
+    "category": "Warranty",
+    "priority": 4
+  },
+  {
+    "id": "multiple-devices",
+    "question": "Can I use the account on multiple devices?",
+    "answer": "This depends on the specific service's terms. Family plans typically allow multiple users/devices, while individual plans are limited to the number specified by the service provider.",
+    "category": "Usage",
+    "priority": 5
+  },
+  {
+    "id": "wrong-payment",
+    "question": "What if I send the wrong amount?",
+    "answer": "If you send less than required, you'll need to send the remaining balance. If you send more, we'll refund the excess amount or apply it as credit for future purchases.",
+    "category": "Payment",
+    "priority": 6
+  },
+  {
+    "id": "country-restrictions",
+    "question": "Are there any country restrictions?",
+    "answer": "Account availability may vary by region due to service provider restrictions. We'll inform you before processing your order if there are any limitations for your location.",
+    "category": "General",
+    "priority": 7
+  },
+  {
+    "id": "change-plan",
+    "question": "Can I change my plan after purchase?",
+    "answer": "Plan changes are not possible after purchase completion. However, you can purchase a different plan and we may offer credit for unused time on your current plan.",
+    "category": "General",
+    "priority": 8
+  },
+  {
+    "id": "contact-support",
+    "question": "How can I contact customer support?",
+    "answer": "You can reach our support team 24/7 via Telegram @yourtelegram. Please have your receipt ID ready when contacting support for faster assistance.",
+    "category": "Support",
+    "priority": 9
+  },
+
+  {
+  "id": "refund-policy",
+  "question": "What is your refund policy?",
+  "answer": "Refunds are generally not provided after purchase. However, if an account stops working within the warranty period due to our fault, we will replace it at no extra cost. For any issues, please contact support.",
+  "category": "Refunds",
+  "priority": 11
+},
+{
+  "id": "bulk-orders",
+  "question": "Do you offer discounts for bulk orders?",
+  "answer": "Yes, we offer special pricing for bulk orders (10+ accounts). Contact us via Telegram with your requirements for a custom quote.",
+  "category": "Pricing",
+  "priority": 10
+}
+]
+

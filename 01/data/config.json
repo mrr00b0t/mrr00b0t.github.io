@@ -1,0 +1,22 @@
+{
+  "seller": {
+    "name": "Digital Market Store",
+    "telegram": {
+      "username": "Tyrell_TheForgottenOne",
+      "url": "https://t.me/Tyrell_TheForgottenOne",
+      "displayName": "@Tyrell_TheForgottenOne"
+    },
+    "support": {
+      "hours": "24/7",
+      "description": "Available for immediate assistance"
+    }
+  },
+  "receipt": {
+    "companyName": "DIGITAL PRODUCTS MARKETPLACE",
+    "footer": "Thank you for your purchase!"
+  },
+  "delivery": {
+    "estimatedTime": "1-24 hours",
+    "businessHours": "1-2 hours during business hours"
+  }
+}

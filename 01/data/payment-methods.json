@@ -1,0 +1,90 @@
+[
+  {
+    "id": "kbz-pay",
+    "name": "KBZ Pay",
+    "type": "Mobile Wallet",
+    "icon": "fas fa-mobile-alt",
+    "phone": "09123456789",
+    "accountName": "John Doe",
+    "uid": "john_doe_kbz",
+    "supported_currencies": ["MMK"],
+    "active": true
+  },
+  {
+    "id": "cb-pay",
+    "name": "CB Pay",
+    "type": "Mobile Wallet", 
+    "icon": "fas fa-credit-card",
+    "phone": "09987654321",
+    "accountName": "John Doe",
+    "uid": "john_doe_cb",
+    "supported_currencies": ["MMK"],
+    "active": false
+  },
+  {
+    "id": "wave-pay",
+    "name": "Wave Pay",
+    "type": "Mobile Wallet",
+    "icon": "fas fa-wave-square",
+    "phone": "09555666777",
+    "accountName": "John Doe",
+    "uid": "john_doe_wave",
+    "supported_currencies": ["MMK", "USD"],
+    "active": true
+  },
+  {
+    "id": "aya-pay",
+    "name": "AYA Pay",
+    "type": "Mobile Wallet",
+    "icon": "fas fa-wallet",
+    "phone": "09111222333",
+    "accountName": "John Doe",
+    "uid": "john.doe.aya",
+    "supported_currencies": ["MMK"],
+    "active": true
+  },
+  {
+    "id": "paypal",
+    "name": "PayPal",
+    "type": "International Payment",
+    "icon": "fab fa-paypal",
+    "email": "seller@example.com",
+    "accountName": "John Doe",
+    "supported_currencies": ["USD"],
+    "active": true
+  },
+  {
+    "id": "bitcoin",
+    "name": "Bitcoin",
+    "type": "Cryptocurrency",
+    "icon": "fab fa-bitcoin",
+    "address": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+    "accountName": "Digital Wallet",
+    "network": "Bitcoin Mainnet",
+    "supported_currencies": ["USD", "THB"],
+    "active": true
+  },
+  {
+    "id": "bank-transfer",
+    "name": "Bank Transfer",
+    "type": "Traditional Banking",
+    "icon": "fas fa-university",
+    "bankName": "Myanmar Apex Bank",
+    "accountNumber": "1234567890123456",
+    "accountName": "John Doe",
+    "swiftCode": "MAYB0109000",
+    "supported_currencies": ["MMK", "USD"],
+    "active": true
+  },
+  {
+    "id": "truemoney",
+    "name": "TrueMoney Wallet",
+    "type": "Mobile Wallet",
+    "icon": "fas fa-money-bill-wave",
+    "phone": "+66812345678",
+    "accountName": "John Doe",
+    "uid": "john_doe_true",
+    "supported_currencies": ["THB"],
+    "active": true
+  }
+]
