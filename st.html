@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Glass Speed Test</title> <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0F0C29; /* fallback */
+            background: -webkit-linear-gradient(to right, #24243E, #302B63, #0F0C29);
+            background: linear-gradient(to right, #24243E, #302B63, #0F0C29);
+            overflow: hidden; /* Prevent scrollbars from background shapes */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Ensure body takes full viewport height */
+        }
+
+        /* Animated Background Shapes - More fluid and subtle */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden; /* Ensure shapes don't go past body bounds */
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1; /* Reduced opacity for a more subtle look */
+            animation: move 30s infinite ease-in-out alternate; /* Slower, smoother, alternating animation */
+            filter: blur(150px); /* Increased blur for a softer glow */
+        }
+
+        .shape1 {
+            width: 50vw; /* Larger */
+            height: 50vw;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            top: 10%; /* Adjusted position */
+            left: 8%;
+            animation-duration: 25s;
+        }
+
+        .shape2 {
+            width: 45vw; /* Larger */
+            height: 45vw;
+            background: linear-gradient(135deg, #ff0084 0%, #33001b 100%);
+            bottom: 10%; /* Adjusted position */
+            right: 8%;
+            animation-duration: 35s;
+            animation-direction: normal; /* Changed to normal for more variety */
+        }
+
+        .shape3 { /* Added a third shape for more depth */
+            width: 35vw;
+            height: 35vw;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); /* Gold/Orange gradient */
+            top: 40%;
+            left: 45%;
+            transform: translate(-50%, -50%); /* Center it initially */
+            animation: move 20s infinite ease-in-out alternate-reverse; /* Different animation */
+            opacity: 0.08; /* Even subtler */
+            filter: blur(180px); /* Even more blur */
+        }
+
+
+        @keyframes move {
+            0% { transform: scale(1) translate(0, 0); }
+            25% { transform: scale(1.1) translate(-5vw, 15vh); }
+            50% { transform: scale(0.9) translate(10vw, -10vh); }
+            75% { transform: scale(1.15) translate(-15vw, -5vh); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+
+        /* Clear Liquid-Glassmorphism Panel Style */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08); /* More transparent */
+            backdrop-filter: blur(30px) saturate(150%); /* Increased blur, added saturate for vibrancy */
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
+            border-radius: 25px; /* Slightly more rounded corners */
+            border-top: 1px solid rgba(255, 255, 255, 0.15); /* Subtler border */
+            border-left: 1px solid rgba(255, 255, 255, 0.15); /* Subtler border */
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4); /* Larger, softer shadow */
+            z-index: 1;
+            transition: all 0.3s ease-in-out; /* Add transition for hover effects */
+            position: relative; /* For overflow hidden on rounded corners */
+            overflow: hidden; /* Ensures content respects border-radius */
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px); /* Subtle lift on hover */
+            box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+        }
+
+        /* Custom Scrollbar for History */
+        #history-list::-webkit-scrollbar {
+            width: 8px; /* Wider scrollbar for easier interaction */
+        }
+        #history-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05); /* Lighter track */
+            border-radius: 4px;
+        }
+        #history-list::-webkit-scrollbar-thumb {
+            background: rgba(0, 220, 255, 0.6); /* Slightly more opaque thumb */
+            border-radius: 4px;
+            border: 1px solid rgba(0, 220, 255, 0.2); /* Added subtle border */
+        }
+        #history-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 220, 255, 0.9); /* More opaque on hover */
+        }
+
+        /* Enhancements for interactive elements */
+        .interactive-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 220, 255, 0.4); /* Glow effect */
+        }
+        .interactive-button:hover {
+            transform: scale(1.08); /* Slightly larger scale on hover */
+            box-shadow: 0 6px 20px rgba(0, 220, 255, 0.6); /* More intense glow */
+        }
+        .interactive-button:active {
+            transform: scale(1.02); /* Slight press effect */
+        }
+
+        .history-item-hover:hover {
+            background: rgba(255, 255, 255, 0.07); /* More pronounced hover for history items */
+            transform: translateX(5px); /* Subtle slide effect */
+        }
+
+        /* Gradient Text for Main Speed Value */
+        .gradient-text {
+            background: linear-gradient(90deg, #89f7fe, #66a6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback for browsers not supporting text-fill-color */
+        }
+
+    </style>
+</head>
+<body class="text-white antialiased">
+
+    <div class="background">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div> </div>
+
+    <div class="container mx-auto p-4 min-h-screen flex items-center justify-center relative z-10"> <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-5xl">
+
+            <div class="lg:col-span-1 w-full">
+                <main class="w-full flex flex-col items-center glass-panel p-6 md:p-10 h-full">
+                    <header class="text-center mb-6">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Internet Download Test</h1>
+                        <p class="text-gray-300 mt-2 text-lg">Measure your connection's true performance.</p> </header>
+                    
+                    <div class="my-10 text-center">
+                        <div class="text-gray-300 text-lg mb-2">Download Speed</div>
+                        <div class="flex items-end justify-center">
+                            <span id="download-value" class="text-7xl md:text-8xl font-extrabold leading-none gradient-text">0.00</span> <span class="text-2xl font-bold text-gray-300 ml-2 mb-2">Mbps</span>
+                        </div>
+                    </div>
+
+                    <div class="my-6">
+                        <button id="startBtn" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-10 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg interactive-button">
+                            Start Test
+                        </button>
+                    </div>
+                    
+                    <div id="status" class="text-lg text-gray-200 mb-4 h-6 text-center"></div>
+
+                    <div class="w-full h-32 mt-4">
+                        <canvas id="speedChart"></canvas>
+                    </div>
+                </main>
+            </div>
+
+            <div class="lg:col-span-1 w-full">
+                <div class="glass-panel p-6 flex flex-col h-[28rem]">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-500 pb-2">
+                         <h2 class="text-2xl font-bold">Test History</h2>
+                         <button id="clearHistoryBtn" class="text-sm text-cyan-400 hover:text-cyan-200 interactive-button px-3 py-1 rounded">Clear All</button> </div>
+                    <div id="history-list" class="flex-grow overflow-y-auto pr-2">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM element references
+        const startBtn = document.getElementById('startBtn');
+        const statusEl = document.getElementById('status');
+        const downloadValueEl = document.getElementById('download-value');
+        const chartCanvas = document.getElementById('speedChart');
+        const historyListEl = document.getElementById('history-list');
+        const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+
+        let chart;
+
+        // --- Configuration ---
+        const config = {
+            download: {
+                files: [
+                    { size: 50 * 1024 * 1024, endpoint: 'https://speed.cloudflare.com/__down?bytes=50000000' },
+                    { size: 100 * 1024 * 1024, endpoint: 'https://speed.cloudflare.com/__down?bytes=100000000' }
+                ],
+                duration: 15000, // 15 seconds
+            }
+        };
+
+        // --- Chart Initialization ---
+        function initChart() {
+            if (chart) chart.destroy();
+            const ctx = chartCanvas.getContext('2d');
+            // Softer, more liquid-like gradient for the chart fill
+            const gradient = ctx.createLinearGradient(0, 0, 0, 100);
+            gradient.addColorStop(0, 'rgba(137, 247, 254, 0.3)'); // Lighter blue, more transparent
+            gradient.addColorStop(1, 'rgba(102, 166, 255, 0)'); // Fades out to nothing
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: { 
+                    labels: [], 
+                    datasets: [{ 
+                        label: 'Download (Mbps)', 
+                        data: [], 
+                        borderColor: 'rgba(102, 166, 255, 0.8)', // Slightly softer border color
+                        backgroundColor: gradient,
+                        fill: true, 
+                        tension: 0.5, // Increased tension for a more curvy, liquid line
+                        borderWidth: 2,
+                        pointRadius: 0
+                    }] 
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    scales: { 
+                        x: { display: false }, 
+                        y: { 
+                            display: false, 
+                            beginAtZero: true,
+                            max: 1000, // Cap Y-axis to prevent extreme jumps if very high speeds are detected
+                            min: 0,
+                        } 
+                    }, 
+                    plugins: { legend: { display: false } }, 
+                    animation: { duration: 150 } // Slightly faster animation for chart updates
+                }
+            });
+        }
+        
+        // --- UI Update Functions ---
+        function resetUI() {
+            statusEl.textContent = '';
+            downloadValueEl.textContent = '0.00';
+            initChart();
+        }
+        
+        function addChartData(downloadData) {
+            chart.data.labels.push('');
+            if (downloadData !== null) chart.data.datasets[0].data.push(downloadData);
+            // Limit chart data to prevent performance issues with too many points
+            if (chart.data.labels.length > 60) { // Increased points for slightly longer visual history
+                 chart.data.labels.shift();
+                 chart.data.datasets[0].data.shift();
+            }
+            chart.update();
+        }
+
+        // --- History Management ---
+        function getHistory() {
+            return JSON.parse(localStorage.getItem('speedTestHistory')) || [];
+        }
+
+        function saveHistory(result) {
+            const history = getHistory();
+            history.unshift(result); // Add to the beginning
+            if (history.length > 25) { // Allow more history items
+                history.pop(); 
+            }
+            localStorage.setItem('speedTestHistory', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const history = getHistory();
+            if (history.length === 0) {
+                historyListEl.innerHTML = '<p class="text-gray-400 text-center mt-4">No tests recorded yet.</p>';
+                return;
+            }
+            historyListEl.innerHTML = history.map(item => `
+                <div class="flex justify-between items-center p-3 rounded-lg history-item-hover mb-2 cursor-pointer"> <div>
+                        <div class="font-semibold text-xl text-cyan-200">${item.speed.toFixed(2)} <span class="text-sm font-normal text-gray-400">Mbps</span></div>
+                        <div class="text-xs text-gray-500 mt-1">${new Date(item.timestamp).toLocaleString()}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearHistory() {
+            localStorage.removeItem('speedTestHistory');
+            renderHistory();
+        }
+
+        // --- Core Test Logic ---
+        async function testDownload() {
+            statusEl.textContent = 'Testing download speed...';
+            // Use the larger file for better accuracy over a longer test
+            const file = config.download.files[config.download.files.length - 1]; 
+            let totalBytesDownloaded = 0;
+            const startTime = performance.now();
+            let lastUpdateTime = startTime;
+            
+            const controller = new AbortController();
+            const signal = controller.signal;
+            const testTimeout = setTimeout(() => controller.abort(), config.download.duration);
+
+            try {
+                // Add a cache-busting parameter to the URL to ensure fresh download
+                const response = await fetch(file.endpoint + `&_t=${Date.now()}`, { signal, cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const reader = response.body.getReader();
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    totalBytesDownloaded += value.length;
+                    const currentTime = performance.now();
+                    const elapsedTime = (currentTime - startTime) / 1000;
+                    if (elapsedTime > 0) {
+                        const speedMbps = (totalBytesDownloaded * 8) / (elapsedTime * 1000000);
+                        downloadValueEl.textContent = speedMbps.toFixed(2);
+                        // Update chart more frequently for smoother animation
+                        if (currentTime - lastUpdateTime > 80) { // Even faster update interval
+                             addChartData(speedMbps);
+                             lastUpdateTime = currentTime;
+                        }
+                    }
+                }
+            } catch (err) {
+                if (err.name !== 'AbortError') { 
+                    console.error("Download test failed:", err);
+                    statusEl.textContent = `Download test failed: ${err.message || 'Unknown error'}`;
+                } else {
+                    statusEl.textContent = 'Test stopped (duration reached).';
+                }
+            } finally {
+                 clearTimeout(testTimeout);
+            }
+            
+            const totalElapsedTime = (performance.now() - startTime) / 1000;
+            const finalSpeed = (totalBytesDownloaded * 8) / (totalElapsedTime * 1000000) || 0;
+            downloadValueEl.textContent = finalSpeed.toFixed(2);
+            addChartData(finalSpeed); 
+            
+            if (finalSpeed > 0) { 
+                saveHistory({ speed: finalSpeed, timestamp: new Date().getTime() });
+            }
+            
+            return finalSpeed;
+        }
+
+        // --- Main Orchestration ---
+        async function runTestSequence() {
+            startBtn.disabled = true;
+            startBtn.textContent = 'Testing...';
+            // Added animation class to button when active
+            startBtn.classList.remove('interactive-button'); 
+            startBtn.classList.replace('bg-cyan-500', 'bg-gray-600');
+            startBtn.classList.remove('hover:bg-cyan-400');
+            startBtn.classList.remove('transform', 'hover:scale-105', 'shadow-lg'); // Remove hover effects while disabled
+            resetUI();
+            
+            try {
+                await testDownload();
+                statusEl.textContent = 'Test Complete!';
+            } catch (error) {
+                 console.error("Test sequence failed:", error);
+                 statusEl.textContent = 'Test failed. Please try again.';
+            } finally {
+                startBtn.disabled = false;
+                startBtn.textContent = 'Run New Test';
+                // Re-apply animation class and hover effects
+                startBtn.classList.add('interactive-button'); 
+                startBtn.classList.replace('bg-gray-600', 'bg-cyan-500');
+                startBtn.classList.add('hover:bg-cyan-400');
+                startBtn.classList.add('transform', 'hover:scale-105', 'shadow-lg');
+            }
+        }
+
+        // --- Event Listeners ---
+        startBtn.addEventListener('click', runTestSequence);
+        clearHistoryBtn.addEventListener('click', clearHistory);
+
+        // --- Initial setup on page load ---
+        window.onload = () => {
+            initChart();
+            renderHistory();
+        };
+    </script>
+</body>
+</html>
