@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Warming: A Student Project</title>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(to bottom right, #e0f7fa, #e8f5e9); /* Light blue to light green gradient */
+            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+        }
+
+        /* Utility classes for common styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-padding {
+            padding: 5rem 0; /* Equivalent to py-20 */
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+
+        .rounded-full { border-radius: 9999px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+
+        /* Gradients */
+        .bg-gradient-blue-green { background: linear-gradient(to right, #4299e1, #38b2ac); } /* blue-500 to teal-500 */
+        .bg-gradient-green-blue { background: linear-gradient(to right, #48bb78, #4299e1); } /* green-500 to blue-600 */
+        .bg-gradient-blue-purple { background: linear-gradient(to right, #4299e1, #805ad5); } /* blue-600 to purple-700 */
+        .bg-gradient-yellow-green { background: linear-gradient(to right, #ecc94b, #38a169); } /* yellow-500 to green-600 */
+        .bg-gradient-red-orange { background: linear-gradient(to right, #f56565, #ed8936); } /* red-500 to orange-600 */
+        .bg-gradient-purple-pink { background: linear-gradient(to right, #9f7aea, #ed64a6); } /* purple-500 to pink-600 */
+
+        /* Specific section backgrounds */
+        .bg-blue-50 { background-color: #eff6ff; }
+        .bg-blue-100 { background-color: #dbeafe; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-green-100 { background-color: #dcfce7; }
+
+        /* Text colors */
+        .text-blue-800 { color: #2a4365; }
+        .text-blue-700 { color: #2b6cb0; }
+        .text-blue-600 { color: #3182ce; }
+        .text-blue-500 { color: #4299e1; }
+        .text-green-700 { color: #276749; }
+        .text-green-600 { color: #38a169; }
+        .text-red-600 { color: #e53e3e; }
+        .text-purple-700 { color: #6b46c1; }
+        .text-gray-700 { color: #4a5568; }
+        .text-gray-500 { color: #a0aec0; }
+        .text-white { color: #fff; }
+
+        /* Flexbox utilities */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .justify-center { justify-content: center; }
+        .items-center { align-items: center; }
+        .space-x-6 > *:not(:first-child) { margin-left: 1.5rem; }
+        .space-y-4 > *:not(:first-child) { margin-top: 1rem; }
+        .grid { display: grid; }
+        .gap-8 { gap: 2rem; }
+
+        /* Button styles */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border-radius: 9999px; /* Rounded-full */
+            text-decoration: none; /* For anchor tags acting as buttons */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-0.25rem) scale(1.02);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.2), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Specific button colors */
+        .btn-green-blue { background: linear-gradient(to right, #48bb78, #4299e1); }
+        .btn-blue-purple { background: linear-gradient(to right, #4299e1, #805ad5); }
+        .btn-yellow-green { background: linear-gradient(to right, #ecc94b, #38a169); }
+        .btn-red-orange { background: linear-gradient(to right, #f56565, #ed8936); }
+        .btn-purple-pink { background: linear-gradient(to right, #9f7aea, #ed64a6); }
+
+        /* Card styles */
+        .card {
+            background-color: #fff;
+            border-radius: 1.5rem; /* rounded-3xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            padding: 2rem;
+            transition: all 0.3s ease-in-out;
+            border-bottom-width: 4px;
+            border-style: solid;
+        }
+
+        .card:hover {
+            transform: scale(1.03); /* Slightly larger scale on hover */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+        }
+
+        .border-blue-400 { border-color: #63b3ed; }
+        .border-green-400 { border-color: #68d391; }
+        .border-red-400 { border-color: #fc8181; }
+
+        /* Hero Section Specifics */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        .hero-bg-gradient {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(to bottom right, #bfdbfe, #d1fae5); /* blue-200 to green-100 */
+            opacity: 0.7;
+            animation: pulse-bg 10s infinite alternate;
+        }
+
+        .hero-water-texture {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: url('https://placehold.co/1920x1080/ADD8E6/000000?text=Water+Texture');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .hero-overlay-gradient {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            background: linear-gradient(to bottom, transparent, rgba(66, 153, 225, 0.2)); /* transparent to blue-500 opacity 0.2 */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            background-color: rgba(255, 255, 255, 0.8); /* white with opacity */
+            backdrop-filter: blur(8px); /* backdrop-blur-md */
+            padding: 2.5rem; /* p-10 */
+            border-radius: 1.5rem; /* rounded-3xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+            max-width: 960px; /* max-w-4xl */
+            margin: 0 auto;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .hero-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            background-color: rgba(255, 255, 255, 0.9); /* white with opacity */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            border-bottom-left-radius: 1rem; /* rounded-b-xl */
+            border-bottom-right-radius: 1rem; /* rounded-b-xl */
+            backdrop-filter: blur(4px); /* backdrop-blur-sm */
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto; /* Allow horizontal scrolling on small screens */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            white-space: nowrap; /* Prevent wrapping of buttons */
+        }
+
+        .navbar::-webkit-scrollbar {
+            height: 0px; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+        .navbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .navbar button {
+            padding: 0.5rem 0.75rem; /* px-3 py-1 */
+            background: linear-gradient(to right, #63b3ed, #4299e1); /* blue-400 to blue-500 */
+            color: white;
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            transition: all 0.3s ease-in-out;
+            font-size: 0.875rem; /* text-sm */
+            flex-shrink: 0; /* Prevent buttons from shrinking */
+            margin: 0 0.25rem; /* space-x-1 */
+        }
+
+        .navbar button:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            transform: scale(1.05);
+        }
+
+        /* Message Box */
+        .message-box {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #3182ce; /* blue-600 */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 50;
+            animation: fade-in-down 0.5s ease-out forwards;
+            display: none; /* Hidden by default, shown by JS */
+        }
+
+        /* Animations */
+        @keyframes pulse-bg {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.02); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        @keyframes fade-in-down {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 640px) { /* Equivalent to sm breakpoint */
+            .flex-sm-row { flex-direction: row; }
+            .space-sm-x-6 > *:not(:first-child) { margin-left: 1.5rem; margin-top: 0; }
+            .space-sm-y-0 > *:not(:first-child) { margin-top: 0; }
+        }
+
+        @media (min-width: 768px) { /* Equivalent to md breakpoint */
+            .navbar {
+                padding: 1.5rem;
+                space-x: 1.5rem; /* space-x-6 */
+            }
+            .navbar button {
+                padding: 0.5rem 1.25rem; /* px-5 py-2 */
+                font-size: 1rem; /* text-base */
+                margin: 0 0.5rem; /* space-x-2 */
+            }
+            .hero-section { padding: 2rem; }
+            .hero-content { padding: 3rem; } /* p-12 */
+            .text-md-4xl { font-size: 2.25rem; } /* text-4xl */
+            .text-md-5xl { font-size: 3rem; } /* text-5xl */
+            .text-md-6xl { font-size: 3.75rem; } /* text-6xl */
+            .grid-md-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .grid-md-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .hidden-md-block { display: block; }
+        }
+
+        @media (min-width: 1024px) { /* Equivalent to lg breakpoint */
+            .grid-lg-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Message Box -->
+    <div id="messageBox" class="message-box"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <button onclick="scrollToSection('home')">Home</button>
+        <button onclick="scrollToSection('effects')">Effects</button>
+        <button onclick="scrollToSection('causes')">Causes</button>
+        <button onclick="scrollToSection('solutions')">Solutions</button>
+        <button onclick="scrollToSection('future')">Future</button>
+        <button onclick="scrollToSection('about')">About</button>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-gradient"></div>
+        <div class="hero-water-texture"></div>
+        <div class="hero-overlay-gradient"></div>
+
+        <div class="hero-content">
+            <h1 class="text-md-6xl text-4xl font-extrabold text-blue-800 mb-4" style="line-height: 1.2;">
+                Global Warming: <br class="hidden-md-block" /> Understanding Our Planet's Urgent Challenge
+            </h1>
+            <p class="text-lg text-md-xl text-gray-700 mb-8">
+                A comprehensive student project exploring the science, impacts, and solutions for a sustainable future.
+            </p>
+            <div class="flex flex-col flex-sm-row justify-center space-y-4 space-sm-y-0 space-sm-x-6">
+                <a href="#causes" class="btn btn-green-blue" onclick="scrollToSection('causes'); return false;">Learn Causes</a>
+                <a href="#effects" class="btn btn-blue-purple" onclick="scrollToSection('effects'); return false;">View Effects</a>
+                <a href="#solutions" class="btn btn-yellow-green" onclick="scrollToSection('solutions'); return false;">Explore Solutions</a>
+                <a href="#future" class="btn btn-red-orange" onclick="scrollToSection('future'); return false;">Predict the Future</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Effects of Global Warming -->
+    <section id="effects" class="section-padding bg-blue-50">
+        <div class="container">
+            <h2 class="text-md-5xl text-4xl font-bold text-blue-700 text-center mb-12">
+                Effects of Global Warming: A Deep Dive
+            </h2>
+            <div class="grid grid-md-cols-2 grid-lg-cols-3 gap-8">
+                <!-- Effect Card 1: Melting Glaciers & Ice Sheets -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Melting Glaciers & Ice Sheets</h3>
+                    <p class="text-gray-700 mb-4">
+                        The cryosphere, encompassing Earth's frozen regions, is experiencing rapid melting. Both the Greenland and Antarctic ice sheets are losing mass at an accelerating rate, contributing significantly to global sea level rise. For instance, Greenland alone lost an average of **279 billion tons of ice per year** between 1993 and 2019. Arctic sea ice, crucial for regulating global temperatures and supporting unique ecosystems, has declined by about **13% per decade** since the late 1970s. This melting also reduces Earth's albedo (reflectivity), leading to further warming in a feedback loop.
+                    </p>
+                </div>
+
+                <!-- Effect Card 2: Rising Sea Levels -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Rising Sea Levels</h3>
+                    <p class="text-gray-700 mb-4">
+                        Global mean sea level has risen by approximately **8-9 inches (21-24 centimeters) since 1880**, with roughly one-third of that increase occurring in just the last 25 years. This rise is primarily due to two factors: thermal expansion of ocean water as it warms, and the influx of meltwater from glaciers and ice sheets. Projections by the IPCC suggest a global mean sea level rise of **0.3 to 2.5 meters by 2100**, depending on future emissions scenarios. This poses an existential threat to low-lying coastal communities, small island nations, and vital coastal ecosystems like wetlands and mangroves.
+                    </p>
+                </div>
+
+                <!-- Effect Card 3: Extreme Weather Conditions -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Extreme Weather Conditions</h3>
+                    <p class="text-gray-700 mb-4">
+                        A warmer atmosphere holds more moisture, intensifying the water cycle and leading to more frequent and severe extreme weather events. This includes:
+                        <ul>
+                            <li>**Heatwaves:** Becoming more intense and prolonged, increasing risks of heat-related illnesses and wildfires.</li>
+                            <li>**Heavy Precipitation:** Increased frequency and intensity of heavy rainfall events, leading to more severe flooding.</li>
+                            <li>**Droughts:** More intense and longer-duration droughts in many regions, impacting agriculture and water security.</li>
+                            <li>**Tropical Cyclones:** While their frequency might not increase globally, their intensity (higher wind speeds, heavier rainfall) is projected to rise.</li>
+                        </ul>
+                        These events cause significant economic damage, displacement, and loss of life.
+                    </p>
+                </div>
+
+                <!-- Effect Card 4: Impact on Biodiversity & Ecosystems -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Impact on Biodiversity & Ecosystems</h3>
+                    <p class="text-gray-700 mb-4">
+                        Climate change is a major driver of species extinction. Rising temperatures disrupt delicate ecological balances, forcing species to migrate, adapt, or face extinction. Coral reefs, vital marine ecosystems, are particularly vulnerable to ocean warming and acidification, leading to widespread coral bleaching. Changes in seasonal patterns, such as earlier spring thaws, disrupt plant flowering and animal migration patterns, affecting food chains and reproductive cycles. Forests face increased risks from wildfires, pests, and diseases, further reducing their capacity to absorb carbon dioxide.
+                    </p>
+                </div>
+
+                <!-- Effect Card 5: Ocean Acidification -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Ocean Acidification</h3>
+                    <p class="text-gray-700 mb-4">
+                        As atmospheric carbon dioxide (CO₂) levels increase, the oceans absorb a significant portion of this excess CO₂. This absorption leads to a chemical reaction that increases the acidity of seawater, a process known as ocean acidification. Since the Industrial Revolution, the average pH of the ocean surface has fallen by about 0.1 pH units, representing a **30% increase in acidity**. This change negatively impacts marine organisms, particularly those that build shells or skeletons from calcium carbonate, such as corals, shellfish, and plankton, threatening the base of marine food webs.
+                    </p>
+                </div>
+
+                <!-- Effect Card 6: Food and Water Security -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Food and Water Security</h3>
+                    <p class="text-gray-700 mb-4">
+                        Climate change directly threatens global food and water security. Increased frequency of droughts, floods, and extreme temperatures disrupts agricultural productivity, leading to crop failures and reduced yields. Changes in precipitation patterns and glacier melt also impact freshwater availability, exacerbating water stress in many regions. This can lead to increased food prices, malnutrition, and forced migration, particularly in vulnerable developing countries. The interconnectedness of these systems means that disruptions in one area can have cascading effects globally.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Causes of Global Warming -->
+    <section id="causes" class="section-padding" style="background: linear-gradient(to bottom, #dbeafe, #dcfce7);"> <!-- blue-100 to green-100 -->
+        <div class="container">
+            <h2 class="text-md-5xl text-4xl font-bold text-green-700 text-center mb-12">
+                Causes of Global Warming: The Human Footprint
+            </h2>
+            <div class="grid grid-md-cols-2 gap-8" style="align-items: center;">
+                <!-- Greenhouse Effect Explanation -->
+                <div class="card border-green-400">
+                    <h3 class="text-2xl font-semibold text-green-600 mb-4">The Greenhouse Effect</h3>
+                    <p class="text-gray-700 mb-4">
+                        Global warming is primarily driven by the enhanced greenhouse effect. Naturally occurring greenhouse gases (GHGs) in the atmosphere, such as water vapor, carbon dioxide (CO₂), methane (CH₄), and nitrous oxide (N₂O), trap some of the sun's heat, keeping Earth warm enough to sustain life. However, human activities have significantly increased the concentration of these gases, leading to an excess trapping of heat and a rise in global temperatures. This imbalance is the core mechanism of anthropogenic global warming.
+                    </p>
+                </div>
+
+                <!-- Major Greenhouse Gases -->
+                <div class="card border-green-400">
+                    <h3 class="text-2xl font-semibold text-green-600 mb-4">Key Greenhouse Gases</h3>
+                    <p class="text-gray-700 mb-4">
+                        While naturally present, human activities have drastically increased the levels of several potent GHGs:
+                        <ul>
+                            <li>**Carbon Dioxide (CO₂):** The most significant contributor, primarily from burning fossil fuels (coal, oil, natural gas) for energy, transportation, and industrial processes. Deforestation also releases stored CO₂.</li>
+                            <li>**Methane (CH₄):** A powerful GHG, about 28-36 times more potent than CO₂ over 100 years. Major sources include livestock farming (enteric fermentation), rice cultivation, landfills, and leaks from natural gas systems.</li>
+                            <li>**Nitrous Oxide (N₂O):** Primarily from agricultural activities (synthetic fertilizers, manure management) and industrial processes. It has a global warming potential about 265-298 times that of CO₂.</li>
+                            <li>**Fluorinated Gases (F-gases):** Synthetic gases like HFCs, PFCs, and SF₆ used in refrigeration, aerosols, and industrial processes. Though less abundant, they have extremely high global warming potentials, thousands of times that of CO₂.</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 grid grid-md-cols-3 gap-8">
+                <!-- Cause Card 1: Energy Production & Industry -->
+                <div class="card border-green-400" style="padding: 1.5rem;">
+                    <h4 class="text-xl font-semibold text-green-600 mb-3">Energy Production & Industry</h4>
+                    <p class="text-gray-700">
+                        The burning of fossil fuels (coal, oil, natural gas) for electricity generation, heating, and industrial processes is the largest source of human-caused greenhouse gas emissions, particularly CO₂. Industrial activities also release other GHGs as byproducts.
+                    </p>
+                </div>
+                <!-- Cause Card 2: Deforestation & Land Use Change -->
+                <div class="card border-green-400" style="padding: 1.5rem;">
+                    <h4 class="text-xl font-semibold text-green-600 mb-3">Deforestation & Land Use Change</h4>
+                    <p class="text-gray-700">
+                        Forests act as vital carbon sinks, absorbing CO₂ from the atmosphere. Large-scale deforestation, primarily for agriculture, logging, and urbanization, not only releases stored carbon but also reduces the planet's capacity to absorb future emissions.
+                    </p>
+                </div>
+                <!-- Cause Card 3: Agriculture & Waste Management -->
+                <div class="card border-green-400" style="padding: 1.5rem;">
+                    <h4 class="text-xl font-semibold text-green-600 mb-3">Agriculture & Waste Management</h4>
+                    <p class="text-gray-700">
+                        Modern agricultural practices, including livestock farming (methane from digestion) and the use of synthetic nitrogen fertilizers (nitrous oxide), are significant emission sources. Landfills also produce methane as organic waste decomposes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions to Combat Global Warming -->
+    <section id="solutions" class="section-padding" style="background: linear-gradient(to bottom, #dcfce7, #eff6ff);"> <!-- green-100 to blue-50 -->
+        <div class="container">
+            <h2 class="text-md-5xl text-4xl font-bold text-blue-700 text-center mb-12">
+                Solutions to Combat Global Warming: Pathways to Sustainability
+            </h2>
+            <div class="grid grid-md-cols-2 grid-lg-cols-3 gap-8">
+                <!-- Solution Card 1: Renewable Energy Transition -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Renewable Energy Transition</h3>
+                    <p class="text-gray-700 mb-4">
+                        Shifting away from fossil fuels to clean, renewable energy sources is paramount. Technologies like solar photovoltaics, wind turbines (onshore and offshore), hydropower, and geothermal energy are becoming increasingly efficient and cost-competitive. Investing in smart grids and energy storage solutions (e.g., batteries) is also crucial to ensure reliability.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        **Success Story:** Costa Rica has consistently generated over 98% of its electricity from renewable sources for several years, demonstrating a successful transition.
+                    </p>
+                </div>
+
+                <!-- Solution Card 2: Reforestation & Nature-Based Solutions -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Reforestation & Nature-Based Solutions</h3>
+                    <p class="text-gray-700 mb-4">
+                        Protecting existing forests and undertaking large-scale reforestation and afforestation (planting trees where there were none) are powerful natural climate solutions. Trees absorb atmospheric CO₂ through photosynthesis, acting as vital carbon sinks. Other nature-based solutions include restoring wetlands, mangroves, and healthy soils, which also sequester carbon and enhance biodiversity.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        **Success Story:** The Great Green Wall initiative in Africa aims to combat desertification by planting an 8,000 km natural wonder across the continent.
+                    </p>
+                </div>
+
+                <!-- Solution Card 3: Sustainable Consumption & Circular Economy -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Sustainable Consumption & Circular Economy</h3>
+                    <p class="text-gray-700 mb-4">
+                        Adopting sustainable practices in daily life reduces our carbon footprint. This includes reducing overall energy consumption in homes (e.g., insulation, energy-efficient appliances), promoting public transport, cycling, and electric vehicles, minimizing food waste, and opting for plant-rich diets. The circular economy model (reduce, reuse, recycle, repair) minimizes waste and resource depletion.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        **Individual Impact:** Small changes in daily habits, collectively adopted, can lead to significant reductions in emissions.
+                    </p>
+                </div>
+
+                <!-- Solution Card 4: Green Technology & Innovation -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Green Technology & Innovation</h3>
+                    <p class="text-gray-700 mb-4">
+                        Continued research, development, and deployment of innovative green technologies are essential. This includes advanced carbon capture and storage (CCS) technologies, sustainable agricultural practices (e.g., precision farming, reduced tillage), development of alternative fuels, and more efficient industrial processes. Breakthroughs in these areas can accelerate decarbonization.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        **Emerging Solutions:** Direct air capture (DAC) technologies are being developed to remove CO₂ directly from the atmosphere.
+                    </p>
+                </div>
+
+                <!-- Solution Card 5: Policy, Governance & International Cooperation -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Policy, Governance & International Cooperation</h3>
+                    <p class="text-gray-700 mb-4">
+                        Strong government policies, robust regulatory frameworks, and international agreements are critical for driving large-scale systemic change. This includes carbon pricing, subsidies for renewables, stricter emission standards, and international cooperation mechanisms like the Paris Agreement, which aims to limit global warming to well below 2°C, preferably to 1.5°C.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        **Global Effort:** The Paris Agreement unites nearly all nations in a common cause to undertake ambitious efforts to combat climate change.
+                    </p>
+                </div>
+
+                <!-- Solution Card 6: Education, Awareness & Climate Justice -->
+                <div class="card border-blue-400">
+                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Education, Awareness & Climate Justice</h3>
+                    <p class="text-gray-700 mb-4">
+                        Educating communities and raising public awareness about climate change impacts and solutions empowers individuals to make informed choices, advocate for change, and hold leaders accountable. Climate justice ensures that the transition to a sustainable future is equitable, addressing the disproportionate impacts of climate change on vulnerable communities and ensuring their participation in solutions.
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        **Youth Movements:** Global youth climate movements are playing a vital role in raising awareness and demanding urgent action from policymakers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-16 text-center">
+                <h3 class="text-3xl font-bold text-blue-700 mb-6">Take Action Today!</h3>
+                <div class="flex flex-col flex-sm-row justify-center space-y-4 space-sm-y-0 space-sm-x-6">
+                    <button class="btn btn-purple-pink" onclick="showMessage('Carbon Footprint Calculator coming soon! This tool will help you estimate your personal impact and find ways to reduce it.')">
+                        Calculate Your Carbon Footprint
+                    </button>
+                    <button class="btn btn-red-orange" onclick="showMessage('AR Feature for visualizing impact coming soon! Imagine seeing projected sea level rise in your own neighborhood.')">
+                        Visualize Impact with AR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future of Global Warming -->
+    <section id="future" class="section-padding bg-blue-50">
+        <div class="container">
+            <h2 class="text-md-5xl text-4xl font-bold text-purple-700 text-center mb-12">
+                Future of Global Warming: Scenarios and Choices
+            </h2>
+            <div class="grid grid-md-cols-2 gap-8" style="align-items: center;">
+                <!-- Scenario 1: If No Action Is Taken (Business as Usual) -->
+                <div class="card border-red-400">
+                    <h3 class="text-2xl font-semibold text-red-600 mb-4">Scenario: If No Action Is Taken</h3>
+                    <p class="text-gray-700 mb-4">
+                        If global greenhouse gas emissions continue on their current trajectory ("business as usual"), temperatures are projected to rise significantly, potentially exceeding **3°C by 2100**. This would lead to:
+                        <ul>
+                            <li>Catastrophic Sea Level Rise: Displacing hundreds of millions from coastal areas.</li>
+                            <li>Widespread Ecosystem Collapse: Leading to mass extinctions and loss of vital natural services.</li>
+                            <li>Severe Food & Water Scarcity: Exacerbating humanitarian crises and conflicts.</li>
+                            <li>More Frequent & Intense Disasters: Unprecedented heatwaves, mega-droughts, and superstorms.</li>
+                            <li>Irreversible Tipping Points: Such as the collapse of major ice sheets or widespread permafrost melt, releasing even more GHGs.</li>
+                        </ul>
+                        This path presents immense risks to human civilization and the natural world.
+                    </p>
+                </div>
+
+                <!-- Scenario 2: With Collective Action (Sustainable Future) -->
+                <div class="card border-green-400">
+                    <h3 class="text-2xl font-semibold text-green-600 mb-4">Scenario: With Collective Action</h3>
+                    <p class="text-gray-700 mb-4">
+                        Limiting global warming to **1.5°C or well below 2°C** requires rapid, deep, and sustained greenhouse gas emission reductions across all sectors. Achieving this goal would mean:
+                        <ul>
+                            <li>Mitigating Severe Impacts: Avoiding the most catastrophic effects of climate change.</li>
+                            <li>Preserving Biodiversity: Giving ecosystems a chance to adapt and recover.</li>
+                            <li>Enhanced Food & Water Security: Through sustainable practices and reduced climate disruptions.</li>
+                            <li>Cleaner Air & Healthier Communities: Reducing pollution from fossil fuels.</li>
+                            <li>Innovation & Green Economy: Fostering new industries and jobs in sustainable technologies.</li>
+                        </ul>
+                        This path represents a resilient and prosperous future for humanity and the planet, but it demands immediate and coordinated global effort.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center card border-blue-400">
+                <h3 class="text-3xl font-bold text-blue-700 mb-4">Our Choice, Our Future</h3>
+                <p class="text-lg text-gray-700" style="max-width: 768px; margin: 0 auto;">
+                    The future is not predetermined. It is shaped by the decisions we make today. By understanding the science, acknowledging the urgency, and committing to collective action, we can steer our planet towards a thriving, resilient, and equitable future for generations to come. Every individual, community, and nation has a role to play in this vital transformation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="section-padding" style="background: linear-gradient(to bottom, #dbeafe, #e8f5e9);"> <!-- blue-100 to green-50 -->
+        <div class="container" style="max-width: 960px; background-color: #fff; border-radius: 1.5rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); padding: 3rem; border-bottom: 4px solid #68d391;">
+            <h2 class="text-md-5xl text-4xl font-bold text-green-700 text-center mb-12">
+                About This Project
+            </h2>
+            <p class="text-lg text-gray-700 mb-6" style="line-height: 1.75;">
+                This website is a student-led project dedicated to raising awareness and fostering a deeper understanding of global warming. Our mission is to present complex scientific information in an accessible and engaging manner, empowering visitors with knowledge about the climate crisis, its far-reaching effects, the human activities driving it, and the diverse range of solutions available.
+            </p>
+            <p class="text-lg text-gray-700 mb-6" style="line-height: 1.75;">
+                We believe that informed citizens are the foundation of effective climate action. By providing a comprehensive overview, from the fundamental science of the greenhouse effect to inspiring success stories and future scenarios, we aim to encourage critical thinking, inspire personal action, and promote collective responsibility towards building a sustainable and resilient planet.
+            </p>
+
+            <div class="mt-10 text-center">
+                <h3 class="text-2xl font-semibold text-blue-600 mb-4">Contact Us</h3>
+                <p class="text-lg text-gray-700 mb-2">
+                    For inquiries, feedback, or collaboration opportunities, please reach out to us.
+                </p>
+                <p class="text-xl font-medium text-blue-500">tyrell.thai@gmail.com</p>
+                <div class="flex justify-center space-x-6 mt-6">
+                    <!-- Social media icons (Phosphor Icons - simplified for inline SVG) -->
+                    <a href="#" style="color: #4299e1; transition: color 0.3s ease;" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#4299e1'">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 256 256">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm36.4,72.72h-16.11a4.08,4.08,0,0,0-4.4,4.41V120h20.57c-1.12,5.2-2.73,11.2-4.52,15.84l-16.05-.08v48.64a4,4,0,0,0,4,4h12.11a4,4,0,0,0,4-4v-48.64l16.05-.08c1.79-4.64,3.4-10.64,4.52-15.84h-20.57V101.13a4.08,4.08,0,0,0,4.4-4.41H164.4Z" />
+                        </svg>
+                    </a>
+                    <a href="#" style="color: #4299e1; transition: color 0.3s ease;" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#4299e1'">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 256 256">
+                            <path d="M228,68a60,60,0,0,1-17.65,42.43L128,172.78,45.65,110.43A60,60,0,0,1,128,24a60,60,0,0,1,17.65,42.43L128,83.22,210.35,145.57A60,60,0,0,1,228,68Z" />
+                        </svg>
+                    </a>
+                    <a href="#" style="color: #4299e1; transition: color 0.3s ease;" onmouseover="this.style.color='#2b6cb0'" onmouseout="this.style.color='#4299e1'">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 256 256">
+                            <path d="M232,64a60,60,0,0,1-17.65,42.43L128,172.78,45.65,110.43A60,60,0,0,1,128,24a60,60,0,0,1,17.65,42.43L128,83.22,210.35,145.57A60,60,0,0,1,232,64Z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: #2a4365; color: white; padding: 2rem 1rem; text-align: center; border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+        <div class="container">
+            <p>&copy; 2025 Global Warming. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Dedicated to a sustainable future.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for smooth scrolling
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // JavaScript for custom message box
+        function showMessage(msg) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = msg;
+            messageBox.style.display = 'block'; // Show the message box
+            setTimeout(() => {
+                messageBox.style.display = 'none'; // Hide after 3 seconds
+            }, 3000);
+        }
+
+        // Ensure the navbar adjusts its padding when scrolled past the hero section
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                const heroHeight = heroSection.offsetHeight;
+                if (window.scrollY > heroHeight - navbar.offsetHeight) {
+                    navbar.style.paddingTop = '1rem'; // Smaller padding when scrolled
+                    navbar.style.paddingBottom = '1rem';
+                } else {
+                    navbar.style.paddingTop = '1.5rem'; // Default larger padding
+                    navbar.style.paddingBottom = '1.5rem';
+                }
+            }
+        });
+
+        // Initial adjustment on load
+        window.onload = function() {
+            const navbar = document.querySelector('.navbar');
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                const heroHeight = heroSection.offsetHeight;
+                if (window.scrollY > heroHeight - navbar.offsetHeight) {
+                    navbar.style.paddingTop = '1rem';
+                    navbar.style.paddingBottom = '1rem';
+                } else {
+                    navbar.style.paddingTop = '1.5rem';
+                    navbar.style.paddingBottom = '1.5rem';
+                }
+            }
+        };
+    </script>
+</body>
+</html>
