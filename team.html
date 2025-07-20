@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Color Search</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for a clean look */
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Team Color Finder</h1>
+
+        <div class="mb-6 flex space-x-2">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Enter name to search..."
+                class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+            />
+            <button
+                id="searchButton"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+            >
+                Search
+            </button>
+        </div>
+
+        <div id="results" class="space-y-3">
+            <!-- Search results will be displayed here -->
+            <p class="text-gray-500 text-center" id="initialMessage">Start typing a name and click 'Search' to find their team color!</p>
+        </div>
+    </div>
+
+    <script>
+        // Define the raw data as a multi-line string
+        const rawData = `
+1	Nay Chi Htun	Blue
+2	Kyal Sin Lin Lat Moe	Blue
+3	Min Maw Han	Blue
+4	Htet Htet Oo Wai	Blue
+5	Nyi Phyo Kyaw	Blue
+6	Aung Myo	Blue
+7	Min Khant Thaw	Blue
+8	Aung Mon Chan	Blue
+9	Zaw Win Naung	Blue
+10	Nang Z Phaung Thip	Blue
+11	Nyo Zin Lin Nwe	Blue
+12	Aung Pyae Sone Myint	Blue
+13	Qasem Wali	Blue
+14	Zaw Win Htoo	Blue
+15	Zayar Myo Tun	Blue
+16	May Phooe Thwe	Blue
+17	Lae Lae Hlaing	Blue
+18	Hein Tay Za	Blue
+19	May Thiri Paing	Blue
+20	Linn Htet Naing	Blue
+21	Su Yadanar Toe	Blue
+22	Pyae Shin Khaing	Blue
+23	Thu Ya Tun	Blue
+24	Aung Myo Min Htet	Blue
+25	Ye Yint Aung	Blue
+26	Nayi Zin Minn	Blue
+27	Thu Thu Yin Mon	Blue
+28	La Yaung Shinn Thant	Blue
+29	Phyo Ko Ko	Blue
+30	Htin Lin Aung	Blue
+31	Yar Jo	Blue
+32	Htut Aung Hlaing	Blue
+33	Saw Yan Shein	Blue
+34	Myat Thura Sound	Blue
+35	Diya	Blue
+36	Wint Nadi Nhtun	Blue
+37	Chan Myae Thaw	Blue
+38	Su Yati Soe	Blue
+39	Thazin Phyu	Blue
+40	Min Thet Cho	Blue
+41	Aung Nay Linn Tun Hein	Blue
+42	Kaung Khant Kyaw	Blue
+43	Htet Myat Aung	Blue
+44	Hein Htut Thar	Blue
+45	Ti Myae Aung	Blue
+46	Ahmad Nikaji	Blue
+47	Faisal Tohyala	Blue
+48	Abdulaziz Jehyahjehteh	Blue
+49	Theingi Myint	Blue
+50	Naw Glory	Blue
+51	May Thu Khin	Blue
+52	La Pyae Wonn	Blue
+53	Nant Aie Tha Shu	Blue
+54	Myat Hsu Khaing	Blue
+55	Yoon Wati Kyaw	Blue
+56	Chayupol Rengkuankwai	Blue
+57	Apiwat Buaprasert	Blue
+58	Aye Chan Myat Phyoe	Blue
+59	Phyo Thiri Mon	Blue
+60	Nang Aon Tip	Blue
+61	Yati Shoon Lae Lae Oo	Blue
+62	Eant Hmue Thaw	Blue
+63	Khant Zaw Aung	Blue
+64	Paing Thine Kha	Blue
+65	Jccob Sang Bawi Lian	Blue
+66	Phyoe Thet Paing	Blue
+67	Ei Theint Phyu	Blue
+68	Eaint Wathan	Blue
+69	Yee Mon Aung	Blue
+70	Shane Wunna Thaw	Blue
+71	Aung Bhone Myat	Blue
+72	Khaing Sandar	Blue
+73	Nyein Chan Thu	Blue
+74	Soe Yu Ya Maw	Blue
+75	May Htoo Myat Maung	Blue
+76	Tun Myat San	Blue
+77	Aye Thiri Kyaw	Blue
+78	Zay Htet Aung	Blue
+79	Lynn Thiri Zaw	Blue
+80	Han Hsu Wai	Blue
+81	Kaung Myat Paing	Blue
+82	Kyaw Hpone Lwin	Blue
+83	Nang Hsu Yee Win	Blue
+84	Yu Nandar Lwin	Blue
+85	Shwe Yaung Hlwan	Blue
+86	Ei Zin Zin Mon	Blue
+87	Pan Hsu Khin	Blue
+88	Aung Myo Zin	Blue
+89	Khine Su Lwin	Blue
+90	Yoon Wati Naing	Blue
+91	Wai Yan Tun	Blue
+92	Saw Sar Mular	Blue
+93	Moe Hein Khant	Blue
+94	Htike Tin Nyarna	Blue
+95	Kaung Si Lu	Blue
+96	Wint Yupar Khin	Blue
+97	Phyo Thwe Lay Mon	Blue
+98	Nan Htoo Hae	Blue
+99	Ma Hay Mar Oo	Blue
+100	Pyae Phyo Aung	Blue
+101	Nan Aye Mya Thu	Blue
+102	Hadeel Abdulmajid	Blue
+103	Han Ni Ni Htun	Blue
+104	Thanat Suakham	Blue
+105	Jettapon Nimnaim	Blue
+106	Minea Sopheak	Blue
+107	Jiayan Chu	Blue
+108	Myo Paing Thit	Blue
+109	Maran Zai Let Aung	Blue
+110	Char Lu Htet @ Ronal	Blue
+111	Mazin Pohloh	Blue
+112	Afnan Sudakaree	Blue
+113	Nada Akram	Blue
+114	Jumana Pohloh	Blue
+115	Mohammad Mubarak A Alnaimi	Blue
+116	Lwin Min Thant	Blue
+117	C Mol Hoom Thang	Blue
+118	Nang Mwe Seng Moon	Green
+119	Min Naing Khant	Green
+120	Kunthida Ratamda	Green
+121	Chaw Su Hlaing	Green
+122	Nang Phu Pwint Wai	Green
+123	Phone Thant Oo	Green
+124	Myo Htet Kyaw	Green
+125	May Zuly Oo	Green
+126	Khun Hla Lin Maung	Green
+127	Nyan Lin Htet	Green
+128	Myat Min	Green
+129	Kaung Khant Si Thu	Green
+130	Phoo Pwint Wai	Green
+131	Kaung Shwe Sin	Green
+132	Min Htet Han	Green
+133	Eaint Mu Mu Ko	Green
+134	Htet Htet See Sar	Green
+135	Arkar Moe	Green
+136	Sai Lao Hein	Green
+137	Kyi Shun Let Cho	Green
+138	Fadwa Niloh	Green
+139	Ghidaa Saleh	Green
+140	Danil Krapivin	Green
+141	Eain Dary Min Naing	Green
+142	Ms.Phu Phu	Green
+143	Tint Naing Win	Green
+144	Phone Tay Za	Green
+145	Lian Nyan	Green
+146	May Ingyin	Green
+147	Myat Thu Rain	Green
+148	Su Yadanar Tin	Green
+149	Nyan Zin Aung	Green
+150	Zar Chi Lin	Green
+151	Paing Min Khant	Green
+152	Khaing Min Kyaw	Green
+153	Min Khant Zin	Green
+154	La Min Eain	Green
+155	Hla Htun Thein	Green
+156	Kyaw Naing Htay	Green
+157	Aung Khant Min	Green
+158	Chan Myae Oo	Green
+159	Htet Wai Yan	Green
+160	Ibrahim Salaebing	Green
+161	Phone Myat Paing	Green
+162	Nilar	Green
+163	Mya Thune Chyal	Green
+164	Zin Pwint Phyu	Green
+165	Wanyeeva O’Keefe	Green
+166	Thamporn Duangsri	Green
+167	Nathapol Kangre	Green
+168	Suthasinee	Green
+169	Sirapatsorn Wongjittratorn	Green
+170	Anataya Samanit	Green
+171	Suthasinee Sribuarin	Green
+172	Myat Bhone Pyae	Green
+173	Kyae Sin Phyo	Green
+174	Kaung Lin Khant	Green
+175	Nyan Myint Tun	Green
+176	Aung Min Khant	Green
+177	Shine Thura Aung	Green
+178	Shoon Lae Lae Phoo	Green
+179	Shin Mon Thant	Green
+180	Bhone Myat Kyaw	Green
+181	Phyu Pyar Sor	Green
+182	Thin Thandar Zaw	Green
+183	Nan Akari	Green
+184	Sai Arkar Ye Htut	Green
+185	Phyo Thet Paing	Green
+186	Nyan Myint Tun	Green
+187	Sokun Rattana Chet	Green
+188	Sai Arkar Ye Htut	Green
+189	Ma. Phu Myat Soe	Green
+190	Nyi Nyi Zin	Green
+191	Phyu Sin Twel Tar	Green
+192	Kyaw Kaung Htet	Green
+193	Min Lin Htet	Green
+194	Khaing Cho Min Thein	Green
+195	Phyu Sin Maung	Green
+196	Kyay Hmone Kyaing	Green
+197	Kyaw Zaya Aung	Green
+198	Saw Htet Aung	Green
+199	Than Kywe Tun	Green
+200	Naw Thapalay Phaw	Green
+201	Arkar Htun	Green
+202	Tharaphi Maung	Green
+203	Su Yati Lin	Green
+204	Kyaw Kyaw Min Khant	Green
+205	Su Su Hlaing	Green
+206	Nan Aye Mya Thu	Green
+207	Win Lae Ko	Green
+208	Wai Yan Oak	Green
+209	Khin Chan Pyae Thu	Green
+210	Yin Nyein Eain	Green
+211	Thet Paing Hein	Green
+212	Nan Zue Wathan Hnaung	Green
+213	Moe Pyae Pyae Thinn	Green
+214	Zeting Li	Green
+215	Ghaidaa Saleh	Green
+216	Sreyleap Mean	Green
+217	Aung Phone Kyaw	Green
+218	Hein Thet Aung Htet	Green
+219	Han Min Myat	Green
+220	Zay Yar Min	Green
+221	Theerapat Armart	Green
+222	Sitthichai Itthipornvanich	Green
+223	Ernst William Reinke	Green
+224	Shuqi Pang	Green
+225	Banyar Kyaw	Green
+226	Kaung Khant Gyi	Green
+227	Kanvisar Hassan Kimti	Green
+228	Jad Hajimasalaeh	Green
+229	Natthawut Thongsathit	Green
+230	Lynn Awae	Green
+231	Aung Dana	Green
+232	Nan Moe Thae Thae Moe	Green
+233	Si Thu	Green
+234	Eyad Awae	Green
+235	Hpone Myat Kyaw	Red
+236	Thiri San	Red
+237	Wady Thin	Red
+238	Phone Min Khant	Red
+239	Ye Win Aung	Red
+240	Thu Ta Aung	Red
+241	Su Thiri San	Red
+242	Pwint Phoo Than Thar Aye	Red
+243	Nicha Sriphuengchan	Red
+244	Man Fah	Red
+245	Supakorn Ananlana	Red
+246	Mu Mu Swe	Red
+247	Than Lay Htike Oo	Red
+248	May Pyae Sone Thway	Red
+249	Kyaw Oak Soe	Red
+250	Myat Phyu Phyu Sin	Red
+251	May Htet Myat Maung	Red
+252	Nyan Lin Tun	Red
+253	Aye Chan Ko	Red
+254	Myint Zu Khine	Red
+255	Yan Paing	Red
+256	Htet Myet Khant	Red
+257	Eaint Hmoo Zaw	Red
+258	Ngwe Bhone Aung	Red
+259	Khin Myat Moe Naing	Red
+260	Osamah Binmayiding	Red
+261	Han Win Htun	Red
+262	Myo Htet Hein	Red
+263	Myat Phyu Sin Thant	Red
+264	Shreja Shrestha	Red
+265	Kaung Kyaw Thant	Red
+266	Yoon Pa Pa Aung	Red
+267	Su Pan Htoo Pyae	Red
+268	Khun Hein Arkar Aung	Red
+269	Ye Nay Myo	Red
+270	Min Htet Thar	Red
+271	Phyo Thinzar	Red
+272	Than Tun Oo	Red
+273	Min Khant	Red
+274	Aye Sandar Kyaw	Red
+275	Yan Naing	Red
+276	Sai Tun Sint Naing	Red
+277	Thar Htet Aung	Red
+278	Kyaw Zaw Win	Red
+279	Hein Htet Oo	Red
+280	Tun Thet Paing	Red
+281	Feras Tohyala	Red
+282	May Mie Myat Thwe	Red
+283	Myat Myat Moe	Red
+284	Zay Yar Min	Red
+285	Myat Myat Min Khin	Red
+286	Thet Hmu Thwe	Red
+287	Zue Zue Aung	Red
+288	Thitivorada Promkaew	Red
+289	Jirawat Paksuk	Red
+290	Anusaniya Ingkutanon	Red
+291	Jiratchaya Seaeaw	Red
+292	Aung Kaung Myat	Red
+293	Wai Yan Phyo Aung	Red
+294	Saw Ye Htet Lin	Red
+295	Min Khant Lwin	Red
+296	Kyaw Min Maung San	Red
+297	Yin Thu Thu Aung	Red
+298	Ye Lwin Moe	Red
+299	Eaindray Oo	Red
+300	Hsu Pyae Thar	Red
+301	Pwint Thhinzar Zaw	Red
+302	Naw Lover Say	Red
+303	Wai Phyo Thant	Red
+304	Hay Mar Lwin	Red
+305	Wamm Ko Ko Kyaw	Red
+306	Shoon Lai Wai Yee Oo	Red
+307	Mhu Myint Myat Mol	Red
+308	Nyein Su Su San	Red
+309	Htet Moe Thu	Red
+310	Hein Htut Zin	Red
+311	Khant Nyar Htin	Red
+312	Saw Kenneth Ka Paw Htoo	Red
+313	Hay Mann Hnin Lwinsoe	Red
+314	Myat Noe Khin	Red
+315	Gyanpriya Singh	Red
+316	Thar Htoo Tint	Red
+317	Min Khant Aung	Red
+318	May Zar Phoo Pyae	Red
+319	Min Hein Khant	Red
+320	Han Thar San	Red
+321	Joshua Cung Lian Bawi	Red
+322	Min Khant Soe	Red
+323	Ma Ma Mote Thone Kue	Red
+324	Hsu Hnin Khin	Red
+325	Zar Chi Wint Htal	Red
+326	May Zuly Oo	Red
+327	Naing Oo Wai	Red
+328	Yoon Lae Mon	Red
+329	Soe Saw	Red
+330	Sai Wai Yan	Red
+331	Hein Lin Bo	Red
+332	Shun Yati	Red
+333	I Sak	Red
+334	Chom Poo	Red
+335	September Zwe	Red
+336	Kaung Min Thant	Red
+337	Phyu Sin Maung	Red
+338	Shucheng Lin	Red
+339	Wanyeeva O'Keefe	Red
+340	Chinnathat Ruenlapha	Red
+341	Htet Aung Aung	Red
+342	Kaung Htet Paing	Red
+343	Sai Thurein Lwin	Red
+344	Zwe Nanda Thu	Red
+345	Myat Thu	Red
+346	Krichaya Khawthong	Red
+347	Anas Lateh	Red
+348	Abdullah Ma	Red
+349	Lamar Tehtae	Red
+350	May Htet Myat Maung	Red
+351	Moe Pyae Pyae Kyaw	Red
+352	Saw Min Chit Thu	Red
+353	Sheng Phwe Hom	Yellow
+354	Thin Su Kyi Saung	Yellow
+355	Nyein Nyein Wai	Yellow
+356	Phone Myat Saw	Yellow
+357	Nyan Lin Htet	Yellow
+358	Swan Htet Aung	Yellow
+359	Aung Kyaw Moe	Yellow
+360	Kyaw Htet Paing	Yellow
+361	Abdulrahman Kasabuesu Aboodin	Yellow
+362	Ziyad Awae	Yellow
+363	Khwanruedee Tohku	Yellow
+364	Abdulelah Kamsanoh	Yellow
+365	Aye Thazin Aung	Yellow
+366	Ruth Honey	Yellow
+367	Lin Htut Aung	Yellow
+368	Chu Kabyar Phyo	Yellow
+369	Phuong Nhu Huynh	Yellow
+370	Myint Thinzar	Yellow
+371	Ei Myint Myat Phoo	Yellow
+372	May Thu Soe	Yellow
+373	Venus Thawang Tha Par	Yellow
+374	Htet Arkar Kyaw	Yellow
+375	May Hein Htet	Yellow
+376	Thar Htun Oo	Yellow
+377	Si Thu Ye Zaw	Yellow
+378	Saw Kyaw Khant No	Yellow
+379	Htet Nay Ye Yint	Yellow
+380	Khant Naing Hein	Yellow
+381	Kandapond	Yellow
+382	Taksina Khuertup	Yellow
+383	Myo San Aung	Yellow
+384	Su Myat Naing	Yellow
+385	Kyaw Saw Ye Yint	Yellow
+386	Khin Pyae Sone	Yellow
+387	Zwe Mann Aung	Yellow
+388	Sitta Yiewsrikol	Yellow
+389	Kunthida Ratnathela	Yellow
+390	Natchanan Chimwong	Yellow
+391	Kwanthida Juntimee	Yellow
+392	Ploynapat Yeemeengoh	Yellow
+393	Phetphailin Khongin	Yellow
+394	Najyamee Kamsanoh	Yellow
+395	Han Min Myat	Yellow
+396	Zay Zay Aung	Yellow
+397	Aung Min Khant	Yellow
+398	Heinn Htet	Yellow
+399	Bone Latte Yone	Yellow
+400	Yin Kyay Wai	Yellow
+401	Saw Hsar Doh Soe	Yellow
+402	Swan Min Htet	Yellow
+403	Min Pyae Sone	Yellow
+404	Min Banyar Htun	Yellow
+405	Shwe Pyae Eain	Yellow
+406	Nan Sanda Htun	Yellow
+407	Htet Myat Naing	Yellow
+408	Thant Zin Myo Minn	Yellow
+409	Thuta	Yellow
+410	Si Thu Khant	Yellow
+411	Anthony	Yellow
+412	Aung Maw Oo	Yellow
+413	Thura Naing	Yellow
+414	May Thiri Kyaw	Yellow
+415	Aung Khant Moe	Yellow
+416	Kaung Khant Kyaw	Yellow
+417	Phone Min Htut	Yellow
+418	Sai Myat Phone Oo	Yellow
+419	Win Htet Hmue Zin	Yellow
+420	Kyaw Zaw Win	Yellow
+421	Aye Sandar Kyi	Yellow
+422	Hsu Yadanar Hlaing	Yellow
+423	Kaung Thant Aung	Yellow
+424	Moe Lwin	Yellow
+425	Su Su Zan	Yellow
+426	Shun Lae Soe	Yellow
+427	Phyo Thura Aung	Yellow
+428	Wint Wah Wah Phue	Yellow
+429	Saw Hosanna Aung Thein	Yellow
+430	Phyo Thant Paing	Yellow
+431	Su Myat Thiri	Yellow
+432	Moe Myint Theingi Ko	Yellow
+433	A Mi Zin	Yellow
+434	Wai Yan Moe Myint	Yellow
+435	Khun Aung Naing	Yellow
+436	Eunt Htoo Aung	Yellow
+437	Phyu Sin Soe	Yellow
+438	Yee Ywal Tun	Yellow
+439	Y Wine Oo	Yellow
+440	Su Su Naing	Yellow
+441	Khin Myo Thazin	Yellow
+442	Naing Tun Aung	Yellow
+443	Hteik Tin Phone Myat	Yellow
+444	Ken Peke Ngoie	Yellow
+445	Htet Myet Khant	Yellow
+446	Lwin Moe Aung	Yellow
+447	May Myat Noe	Yellow
+448	Manal Due-Rahing	Yellow
+449	Saw Kenneth Ka Paw Htoo	Yellow
+450	Esmita Islam	Yellow
+451	Hein Thiha	Yellow
+452	Htet Eaindray Soe	Yellow
+453	Thuzar Win Pyae	Yellow
+454	Maimonah Hama	Yellow
+455	Rathanak Bunthorn	Yellow
+456	Jun Guo	Yellow
+457	Kyaw Saw Ye Yint	Yellow
+458	Min Kon Tala Htaw	Yellow
+459	Kaung Khant Maung Maung	Yellow
+460	Ali Nikaji	Yellow
+461	Suphawech Talampour	Yellow
+462	Jittha Sunphagaew	Yellow
+463	Saw Htoo Wai Naing	Yellow
+464	Kaung Lin Khant	Yellow
+465	Myat Myat Min Khin	Yellow
+466	Thar Tun Oo	Yellow
+467	MR.THAR TUN OO -	Engr
+        `;
+
+        // Parse the raw data into a structured array of objects
+        const teamData = rawData.trim().split('\n').map(line => {
+            // Split by tab. The original input had a tab between the number, name, and color.
+            const parts = line.split('\t');
+            const id = parseInt(parts[0].trim()); // Parse ID as integer
+            let name = parts[1].trim();
+            const color = parts[2].trim();
+
+            // Special handling for "MR.THAR TUN OO -" to remove the trailing hyphen if present
+            if (name.endsWith('-')) {
+                name = name.slice(0, -1).trim();
+            }
+
+            return { id, name, color };
+        });
+
+        // Get references to the HTML elements
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const resultsDiv = document.getElementById('results');
+        const initialMessage = document.getElementById('initialMessage');
+
+        /**
+         * Performs the search based on the input value and displays results.
+         */
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase(); // Get input and convert to lowercase for case-insensitive search
+            resultsDiv.innerHTML = ''; // Clear previous results
+
+            // Hide the initial message once a search is performed
+            if (initialMessage) {
+                initialMessage.style.display = 'none';
+            }
+
+            const foundResults = teamData.filter(item =>
+                item.name.toLowerCase().includes(searchTerm)
+            );
+
+            if (foundResults.length > 0) {
+                foundResults.forEach(item => {
+                    // Create a div for each result
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'p-3 bg-gray-50 rounded-lg shadow-sm flex justify-between items-center';
+
+                    // Create a span for the name
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'font-medium text-gray-800';
+                    nameSpan.textContent = item.name;
+
+                    // Create a span for the color, with dynamic background color
+                    const colorSpan = document.createElement('span');
+                    // Ensure the color is a valid CSS color name or hex code.
+                    // For "Engr", it will just be displayed as text.
+                    const bgColorClass = item.color.toLowerCase() === 'blue' ? 'bg-blue-200 text-blue-800' :
+                                         item.color.toLowerCase() === 'green' ? 'bg-green-200 text-green-800' :
+                                         item.color.toLowerCase() === 'red' ? 'bg-red-200 text-red-800' :
+                                         item.color.toLowerCase() === 'yellow' ? 'bg-yellow-200 text-yellow-800' :
+                                         'bg-gray-200 text-gray-800'; // Default for "Engr" or unknown colors
+
+                    colorSpan.className = `px-3 py-1 rounded-full text-sm font-semibold ${bgColorClass}`;
+                    colorSpan.textContent = item.color;
+
+                    resultItem.appendChild(nameSpan);
+                    resultItem.appendChild(colorSpan);
+                    resultsDiv.appendChild(resultItem);
+                });
+            } else {
+                // Display a message if no results are found
+                const noResults = document.createElement('p');
+                noResults.className = 'text-gray-500 text-center';
+                noResults.textContent = `No results found for "${searchInput.value}".`;
+                resultsDiv.appendChild(noResults);
+            }
+        }
+
+        // Add event listener to the search button
+        searchButton.addEventListener('click', performSearch);
+
+        // Allow searching by pressing Enter in the input field
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>
