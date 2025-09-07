@@ -1,1 +1,235 @@
-Nothing Here
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tint Naing Win (Rexbu) | Cybersecurity Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Neon Nights -->
+    <!-- Application Structure Plan: The application is designed as an interactive "digital dossier" or v-card. Instead of a long scroll, a tabbed navigation ('Skills', 'Hobbies', 'Mission') is used to encourage user exploration and segment the purely textual information into digestible chunks. This interactive structure makes the content more engaging and aligns with the playful, tech-savvy persona of the source profile. The user is invited to actively discover different facets of the personality, rather than passively reading a static page. A humorous "Proficiency" radar chart is included to visually represent the skills in a data-viz format, adding another layer of engagement. -->
+    <!-- Visualization & Content Choices: 
+        - Name/Title -> Goal: Identity -> Presentation: Prominent header text -> Interaction: Static, for impact.
+        - Sections (Skills, Hobbies) -> Goal: Organize & Inform -> Presentation: Tabbed interface & interactive lists -> Interaction: User clicks tabs to reveal content; list items have hover effects to feel dynamic. Justification: Prevents overwhelming the user with text and promotes active discovery.
+        - Skills List -> Goal: Visualize proficiency humorously -> Viz: Radar Chart (Chart.js on Canvas) -> Interaction: Tooltips on hover. Justification: Translates a bulleted list into a memorable and engaging infographic that fits the "specialist" theme ironically.
+        - Objective/Notes -> Goal: Call to action/mission statement -> Presentation: Distinctly styled text boxes -> Interaction: A glowing effect on the "Warning" box to draw attention.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .neon-text-pink { color: #f472b6; }
+        .neon-text-cyan { color: #22d3ee; }
+        .neon-border-pink { border-color: #f472b6; }
+        .neon-shadow-pink { box-shadow: 0 0 5px #f472b6, 0 0 10px #f472b6, 0 0 15px #f472b6; }
+        .tab.active {
+            background-color: #ec4899;
+            color: #ffffff;
+        }
+        .content-panel {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-black text-white tracking-wide">Tint Naing Win</h1>
+            <h2 class="text-lg sm:text-xl font-medium neon-text-cyan mt-1">Cybersecurity Specialist | Junior Pentester</h2>
+            <p class="text-md sm:text-lg neon-text-pink italic mt-2 animate-pulse">(Ready to protect your heart and dreams from nightmare)</p>
+        </header>
+
+        <main class="bg-gray-800 bg-opacity-50 rounded-2xl shadow-lg p-6 sm:p-8">
+
+            <div class="mb-6">
+                <nav class="flex justify-center space-x-2 sm:space-x-4 border-b border-gray-700 pb-4">
+                    <button data-tab="skills" class="tab active px-4 py-2 text-sm sm:text-base font-bold rounded-full transition-all duration-300 hover:bg-pink-500 hover:text-white">Skills</button>
+                    <button data-tab="hobbies" class="tab px-4 py-2 text-sm sm:text-base font-bold rounded-full transition-all duration-300 hover:bg-pink-500 hover:text-white">Hobbies & Interests</button>
+                    <button data-tab="mission" class="tab px-4 py-2 text-sm sm:text-base font-bold rounded-full transition-all duration-300 hover:bg-pink-500 hover:text-white">Mission</button>
+                </nav>
+            </div>
+            
+            <div id="content-container">
+                <div id="skills" class="content-panel">
+                     <p class="text-center text-gray-400 mb-6 px-4">This section details my core competencies. Below is a professional analysis of my proficiency in key areas of personal entertainment and support.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div>
+                            <ul class="space-y-3">
+                                <li class="p-3 bg-gray-900 rounded-lg flex items-center transition-transform hover:scale-105">
+                                    <span class="text-pink-400 mr-3">✓</span> Professional at making you blush and smile
+                                </li>
+                                <li class="p-3 bg-gray-900 rounded-lg flex items-center transition-transform hover:scale-105">
+                                    <span class="text-pink-400 mr-3">✓</span> Certified boredom remover
+                                </li>
+                                <li class="p-3 bg-gray-900 rounded-lg flex items-center transition-transform hover:scale-105">
+                                    <span class="text-pink-400 mr-3">✓</span> Expert in playful teasing and flirty chats
+                                </li>
+                                 <li class="p-3 bg-gray-900 rounded-lg flex items-center transition-transform hover:scale-105">
+                                    <span class="text-pink-400 mr-3">✓</span> Master of late-night conversations
+                                </li>
+                                <li class="p-3 bg-gray-900 rounded-lg flex items-center transition-transform hover:scale-105">
+                                    <span class="text-pink-400 mr-3">✓</span> Skilled in irresistible message composition
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chart-container w-full max-w-md mx-auto h-80 md:h-96">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="hobbies" class="content-panel hidden">
+                    <p class="text-center text-gray-400 mb-6 px-4">My personal interests are highly relevant to this specialized role. These activities form the foundation of my operational strategy for ensuring your happiness and engagement.</p>
+                    <ul class="space-y-4 max-w-lg mx-auto">
+                        <li class="p-4 bg-gray-900 rounded-lg transform transition-all hover:bg-cyan-900 hover:-translate-y-1">
+                            <h3 class="font-bold text-cyan-400">Strategic Laughter Induction</h3>
+                            <p class="text-gray-300">Imagining ways to make you laugh uncontrollably.</p>
+                        </li>
+                        <li class="p-4 bg-gray-900 rounded-lg transform transition-all hover:bg-cyan-900 hover:-translate-y-1">
+                             <h3 class="font-bold text-cyan-400">Constant Connection Initiative</h3>
+                            <p class="text-gray-300">Finding excuses to talk to you all day.</p>
+                        </li>
+                        <li class="p-4 bg-gray-900 rounded-lg transform transition-all hover:bg-cyan-900 hover:-translate-y-1">
+                             <h3 class="font-bold text-cyan-400">Cardiac Excitement Protocols</h3>
+                            <p class="text-gray-300">Creating moments that make your heart skip a beat.</p>
+                        </li>
+                        <li class="p-4 bg-gray-900 rounded-lg transform transition-all hover:bg-cyan-900 hover:-translate-y-1">
+                             <h3 class="font-bold text-cyan-400">Surprise & Delight Scenarios</h3>
+                            <p class="text-gray-300">Thinking about how I’d surprise you if I were there.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="mission" class="content-panel hidden">
+                     <p class="text-center text-gray-400 mb-6 px-4">This section outlines my primary directive, operational parameters, and important disclaimers. Please review carefully.</p>
+                    <div class="space-y-6">
+                        <div class="p-5 bg-gray-900 rounded-lg border-l-4 border-pink-500">
+                            <h3 class="text-xl font-bold text-white mb-2">Objective</h3>
+                            <p>To dedicate all my energy to keeping you entertained, happy, and smiling. Mission: no boredom, only laughter, playful mischief, and moments that make you think of me every time you smile.</p>
+                        </div>
+                         <div class="p-5 bg-gray-900 rounded-lg border-l-4 border-cyan-500">
+                            <h3 class="text-xl font-bold text-white mb-2">Availability</h3>
+                            <ul class="list-disc list-inside text-cyan-300">
+                                <li><span class="font-bold">24/7</span> for teasing, sweet talk, and spontaneous fun</li>
+                                <li><span class="font-bold">Flexible hours</span> for mischief, laughter, and making you feel special</li>
+                            </ul>
+                        </div>
+                        <div class="mt-8 p-5 rounded-lg border-2 neon-border-pink neon-shadow-pink text-center">
+                            <h3 class="text-xl font-bold text-pink-400 mb-2">Special Notes</h3>
+                            <p class="font-medium">Warning: excessive exposure may cause uncontrollable giggles and heart flutters. I take my job seriously… seriously flirty and seriously fun.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        
+        <footer class="text-center mt-8 text-gray-500">
+            <p><strong>Location:</strong> Bangkok, Minburi</p>
+            <p><strong>Contact:</strong> +66968166403 | optester6823@gmail.com</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab');
+            const contentPanels = document.querySelectorAll('.content-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => item.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = tab.getAttribute('data-tab');
+
+                    contentPanels.forEach(panel => {
+                        if (panel.id === target) {
+                            panel.classList.remove('hidden');
+                        } else {
+                            panel.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const skillsData = {
+                labels: [
+                    'Making You Blush',
+                    'Boredom Removal',
+                    'Playful Teasing',
+                    'Late-Night Chats',
+                    'Adventurous Days',
+                    'Irresistible Msgs'
+                ],
+                datasets: [{
+                    label: 'Proficiency Level',
+                    data: [100, 100, 100, 100, 100, 100],
+                    backgroundColor: 'rgba(236, 72, 153, 0.2)',
+                    borderColor: 'rgba(236, 72, 153, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: 'rgba(236, 72, 153, 1)',
+                    pointHoverBackgroundColor: 'rgba(236, 72, 153, 1)',
+                    pointHoverBorderColor: '#ffffff'
+                }]
+            };
+
+            const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(skillsChartCtx, {
+                type: 'radar',
+                data: skillsData,
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            },
+                            pointLabels: {
+                                color: '#cbd5e1',
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            ticks: {
+                                backdropColor: 'rgba(0, 0, 0, 0)',
+                                color: '#9ca3af',
+                                stepSize: 25,
+                                display: false
+                            },
+                            min: 0,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                           display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: Certified Expert`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
