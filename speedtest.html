@@ -3,627 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internet Speed Test</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Network Speed Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Base styles */
+        /* --- Base Styles --- */
         body {
-            font-family: 'Inter', sans-serif;
-            color: #2c3e50;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #8A2BE2, #4169E1, #00BFFF, #20B2AA);
-            background-size: 400% 400%;
-            position: relative;
-            animation: gradientAnimation 15s ease infinite;
-            padding: 2.5rem 1.5rem;
-            display: block; /* Ensure body behaves as a block container for scrolling */
-        }
-
-        /* Dynamic background with animation */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Container for liquid glass effect */
-        .container {
-            max-width: 900px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 2.5rem;
-            background-color: rgba(255, 255, 255, 0.08);
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: slideInUp 0.8s ease-out forwards;
-        }
-
-        /* Entry animation for container */
-        @keyframes slideInUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #ecf0f1;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-        }
-
-        /* Card styles for liquid glass */
-        .card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 1.8rem;
-            margin-bottom: 1.8rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            animation: fadeInScale 0.7s ease-out forwards;
-        }
-        /* Staggered animation delays for cards */
-        .card:nth-of-type(1) { animation-delay: 0.2s; }
-        .card:nth-of-type(2) { animation-delay: 0.4s; }
-        .card:nth-of-type(3) { animation-delay: 0.6s; }
-        .card:nth-of-type(4) { animation-delay: 0.8s; }
-        .card:nth-of-type(5) { animation-delay: 1.0s; }
-        .card:nth-of-type(6) { animation-delay: 1.2s; }
-        .card:nth-of-type(7) { animation-delay: 1.4s; } /* For the reset button card if present */
-
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: translateY(30px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-        }
-
-        .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: #ecf0f1;
-            margin-bottom: 1.2rem;
-            font-size: 1.4rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0f172a; /* Dark blue-gray background */
+            color: #e2e8f0;
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        }
-        .info-item:last-child {
-            border-bottom: none;
-        }
-        .info-label {
-            font-weight: 500;
-            color: #bdc3c7;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        .info-label svg {
-            margin-right: 0.5rem;
-            fill: #bdc3c7;
-            width: 18px;
-            height: 18px;
-        }
-        .info-value {
-            color: #ecf0f1;
-            font-weight: 600;
-            text-align: right;
-            word-break: break-all;
-            font-size: 1.05rem;
-        }
-
-        /* Button styles with gradients and effects */
-        .button, .reset-button {
-            display: block;
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 700;
-            text-align: center;
-            color: white;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 0.5px;
-            background-color: transparent;
-        }
-
-        .button::before, .reset-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: 200% auto;
-            transition: background-position 0.4s ease, box-shadow 0.3s ease, transform 0.2s ease;
-            z-index: -1;
-            border-radius: 12px;
-        }
-
-        .button {
-            margin-top: 2rem;
-        }
-
-        .button::before {
-            background-image: linear-gradient(45deg, #6a4c93 0%, #8a73ad 50%, #6a4c93 100%);
-        }
-        .button:hover::before {
-            background-position: right center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transform: translateY(-3px);
-        }
-        .button:active::before {
-            transform: translateY(0);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Individual speed test results box */
-        .server-speed-results {
-            margin-top: 1.5rem; /* Space between button and results */
-            padding: 1.2rem;
-            background-color: rgba(255, 255, 255, 0.1); /* Slightly more opaque glass */
-            border-radius: 15px;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #e0f2f7;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            flex-direction: column;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Main Container --- */
+        .speedtest-container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(30, 41, 59, 0.6); /* Semi-transparent background */
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.5s ease-in-out; /* Smooth transitions for background/color */
-            opacity: 0; /* Hidden initially */
-            transform: translateY(10px); /* Slide up on show */
-            visibility: hidden; /* Hide from screen readers when not active */
-            height: 0; /* Collapse height when hidden */
-            overflow: hidden; /* Hide content when height is 0 */
-        }
-        .server-speed-results.active {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-            height: auto; /* Expand height when active */
-        }
-
-        .speed-value {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem; /* Adjusted for smaller per-card display */
-            color: #8cffc0;
-            font-weight: 800;
-            text-shadow: 2px 2px 5px rgba(0, 255, 127, 0.4);
-        }
-        .error-message {
-            font-size: 0.95rem; /* Adjusted font size */
-            color: #ff9999;
-            margin-top: 0.5rem; /* Reduced margin */
-            line-height: 1.4;
-            font-weight: 400;
-        }
-
-        .reset-button-container {
+            border: 1px solid rgba(255, 255, 255, 0.18);
             text-align: center;
-            margin-top: 2.5rem;
-            opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            animation: fadeInScale 0.7s ease-out forwards;
-            animation-delay: 1.6s; /* Ensure it appears after all cards */
         }
 
-        .reset-button::before {
-            background-image: linear-gradient(45deg, #e34c4c 0%, #c0392b 50%, #e34c4c 100%);
-        }
-        .reset-button:hover::before {
-            background-position: right center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transform: translateY(-3px);
-        }
-        .reset-button:active::before {
-            transform: translateY(0);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Loading indicator animation (for dots) */
-        .loading-dot {
-            animation: pulse 1.5s infinite ease-in-out;
-            opacity: 0;
-        }
-        .loading-dot:nth-child(1) { animation-delay: 0s; }
-        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
+        /* --- Title --- */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            /* Gradient effect for the text */
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Progress bar animation (background gradient) */
-        @keyframes progress-gradient {
-            0% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .speed-test-results.testing {
-            background: linear-gradient(90deg, rgba(255, 255, 153, 0.2) 0%, rgba(255, 255, 153, 0.5) var(--progress, 0%), rgba(255, 255, 153, 0.2) var(--progress, 0%));
-            background-size: 200% 100%;
-            animation: progress-gradient 1s infinite linear; /* Continuous movement */
-            color: #fdfd96;
+        p {
+            font-weight: 300;
+            color: #94a3b8;
+            margin-bottom: 2rem;
         }
 
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem;
-                margin: 1rem auto;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .card-title {
-                font-size: 1.2rem;
-            }
-            .info-label, .info-value {
-                font-size: 0.9rem;
-            }
-            .server-speed-results {
-                font-size: 1.1rem;
-                padding: 1rem;
-            }
-            .speed-value {
-                font-size: 2.2rem;
-            }
+        /* --- Widget Wrapper --- */
+        .widget-wrapper {
+            /* The parent div for the iframe, with rounded corners */
+            border-radius: 12px;
+            overflow: hidden; /* This clips the iframe corners */
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 1.5rem 1rem;
-            }
-            .section-title {
-                font-size: 1.75rem;
-                margin-bottom: 2rem;
-            }
-            .card-title {
-                font-size: 1rem;
-            }
-            .info-item {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0.5rem 0;
-            }
-            .info-label {
-                margin-bottom: 0.2rem;
-            }
-            .info-value {
-                text-align: left;
-                width: 100%;
-            }
-            .button, .reset-button {
-                padding: 0.8rem 1rem;
-                font-size: 0.9rem;
-            }
-            .server-speed-results {
-                font-size: 0.9rem;
-                padding: 0.8rem;
-                min-height: 70px;
-            }
-            .speed-value {
-                font-size: 1.8rem;
-            }
-            .error-message {
-                font-size: 0.85rem;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 class="section-title">Internet Speed Test Dashboard</h1>
+    <div class="speedtest-container">
+        <h1>Network Speed Test</h1>
+        
 
-        <!-- Target Servers Section -->
-        <div class="card">
-            <h2 class="card-title">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                </svg>
-                Available Speed Test Servers
-            </h2>
-            <div id="targets-container">
-                <!-- Target servers will be loaded here by JavaScript -->
+        <div class="widget-wrapper">
+            <div style="min-height:360px;">
+                <div style="width:100%;height:0;padding-bottom:50%;position:relative;">
+                    <iframe style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;min-height:360px;border:none;overflow:hidden !important;" src="//openspeedtest.com/speedtest"></iframe>
+                </div>
             </div>
-        </div>
-
-        <!-- Reset Button Container (moved outside individual cards for global reset) -->
-        <div class="reset-button-container">
-            <button class="reset-button" id="reset-button">Reset All Speed Tests</button>
-        </div>
+            </div>
     </div>
 
-    <script>
-        // Data structure with client removed
-        const speedTestData = {
-            "targets": [
-                {
-                    "name": "Netflix CDN (Suan Luang, TH)",
-                    "url": "https://ipv6-c015-dmk001-trueinternet-isp.1.oca.nflxvideo.net/speedtest?c=th&n=17552&v=157&e=1750499727&t=Gqa8_fvjUSW9QPTA4jWGqHkPWvgu4QSmbyt1sw",
-                    "location": {
-                        "city": "Suan Luang",
-                        "country": "TH"
-                    }
-                },
-                {
-                    "name": "Netflix CDN (Pakkrad, TH)",
-                    "url": "https://ipv6-c012-dmk002-trueinternet-isp.1.oca.nflxvideo.net/speedtest?c=th&n=17552&v=157&e=1750499727&t=cKdq7BWaEllwlDAEGfHbI_D3oaZ9_LLf33Z14g",
-                    "location": {
-                        "city": "Pakkrad",
-                        "country": "TH"
-                    }
-                },
-                {
-                    "name": "Netflix CDN (Thanyaburi, TH)",
-                    "url": "https://ipv6-c005-dmk003-trueinternet-isp.1.oca.nflxvideo.net/speedtest?c=th&n=17552&v=157&e=1750499727&t=LN9KuBNlZTqeXbarvQNR8TfSQY-nyf865eCbWg",
-                    "location": {
-                        "city": "Thanyaburi",
-                        "country": "TH"
-                    }
-                },
-                {
-                    "name": "Netflix CDN (Singapore, SG-1)",
-                    "url": "https://ipv6-c097-sin001-ix.1.oca.nflxvideo.net/speedtest?c=th&n=17552&v=64&e=1750499727&t=5RFQT80gcGpZxmMPYTQWEurPnRpx9aVD-H-iJw",
-                    "location": {
-                        "city": "Singapore",
-                        "country": "SG"
-                    }
-                },
-                {
-                    "name": "Netflix CDN (Singapore, SG-2)",
-                    "url": "https://ipv6-c067-sin001-ix.1.oca.nflxvideo.net/speedtest?c=th&n=17552&v=127&e=1750499727&t=27SaVVcpoKI2vKpcRZ_N2wY7n6BFVDVCBkswjw",
-                    "location": {
-                        "city": "Singapore",
-                        "country": "SG"
-                    }
-                }
-            ]
-        };
-
-        const targetsContainer = document.getElementById('targets-container');
-        const resetButton = document.getElementById('reset-button');
-
-        /**
-         * Renders the list of target servers with clickable buttons to start speed tests.
-         * Each server card now includes a dedicated results display area.
-         * @param {Array<Object>} targets - An array of target server objects.
-         */
-        function renderTargets(targets) {
-            targetsContainer.innerHTML = ''; // Clear previous targets
-            targets.forEach((target, index) => {
-                const targetCard = document.createElement('div');
-                targetCard.className = 'card mb-4';
-                const serverDisplayName = target.name || `Server ${index + 1}: ${target.location.city}, ${target.location.country}`;
-                
-                // Generate a unique ID for the results div for this server
-                const resultsDivId = `results-server-${index}`;
-
-                targetCard.innerHTML = `
-                    <h3 class="card-title">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        ${serverDisplayName}
-                    </h3>
-                    <div class="info-item">
-                        <span class="info-label">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="icon">
-                                <path d="M12 2c-3.87 0-7 3.13-7 7 0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                            City:
-                        </span>
-                        <span class="info-value">${target.location.city}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="icon">
-                                <path d="M20 5H4c-1.11 0-1.99.89-1.99 2L2 17c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V7c0-1.11-.89-2-2-2zm-1 12H5V7h14v10z"/>
-                            </svg>
-                            Country:
-                        </span>
-                        <span class="info-value">${target.location.country}</span>
-                    </div>
-                    <button class="button" data-url="${target.url}" data-results-id="${resultsDivId}">
-                        Start Speed Test
-                    </button>
-                    <div id="${resultsDivId}" class="server-speed-results">
-                        Click Start Speed Test to begin...
-                    </div>
-                `;
-                targetsContainer.appendChild(targetCard);
-            });
-
-            // Re-attach event listeners to all "Start Speed Test" buttons after they are rendered
-            document.querySelectorAll('.button').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const url = event.target.dataset.url;
-                    const resultsElementId = event.target.dataset.resultsId;
-                    const resultsElement = document.getElementById(resultsElementId);
-                    runSpeedTest(url, resultsElement);
-                });
-            });
-        }
-
-        /**
-         * Resets the speed test results display for all server cards to their initial state.
-         */
-        function resetSpeedTest() {
-            document.querySelectorAll('.server-speed-results').forEach(resultsDiv => {
-                resultsDiv.innerHTML = 'Click Start Speed Test to begin...';
-                resultsDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                resultsDiv.style.color = '#e0f2f7';
-                resultsDiv.classList.remove('active', 'testing'); // Remove active/testing classes
-                resultsDiv.style.removeProperty('--progress'); // Clear progress variable
-            });
-        }
-
-        /**
-         * Attempts to perform a real speed test by downloading data chunks from the provided URL
-         * and calculating the download speed over a set duration.
-         * @param {string} url - The URL of the target server to test against.
-         * @param {HTMLElement} resultsElement - The specific DOM element to update with results.
-         */
-        async function runSpeedTest(url, resultsElement) {
-            resultsElement.classList.add('active'); // Show the results box
-            resultsElement.classList.add('testing'); // Add testing animation class
-            resultsElement.innerHTML = `
-                <p>Connecting & Testing<span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span></p>
-                <p class="text-sm mt-2 text-gray-300">This may take up to 10 seconds.</p>
-            `;
-            resultsElement.style.backgroundColor = 'rgba(255, 255, 153, 0.2)';
-            resultsElement.style.color = '#fdfd96';
-            resultsElement.style.setProperty('--progress', '0%'); // Initialize progress
-
-            const TEST_DURATION_SECONDS = 10;
-            let totalBytesDownloaded = 0;
-            const startTime = performance.now();
-            let isTesting = true;
-
-            const fetchChunk = async () => {
-                try {
-                    const cacheBusterUrl = `${url}&_=${new Date().getTime()}`;
-                    const response = await fetch(cacheBusterUrl);
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
-                    }
-
-                    if (!response.body) {
-                        throw new Error('Response body is not readable. This might be a CORS issue or a server issue.');
-                    }
-
-                    const reader = response.body.getReader();
-                    while (true && isTesting) {
-                        const { done, value } = await reader.read();
-                        if (done) {
-                            break;
-                        }
-                        totalBytesDownloaded += value.length;
-
-                        const currentTime = performance.now();
-                        const durationSeconds = (currentTime - startTime) / 1000;
-                        if (durationSeconds > 0) {
-                            const currentSpeedMbps = ((totalBytesDownloaded * 8) / (durationSeconds * 1000000)).toFixed(2);
-                            resultsElement.innerHTML = `<p>Downloading... <br><span class="speed-value">${currentSpeedMbps}</span> Mbps</p>`;
-                            
-                            // Update CSS variable for progress bar effect
-                            const progress = Math.min((durationSeconds / TEST_DURATION_SECONDS) * 100, 100);
-                            resultsElement.style.setProperty('--progress', `${progress}%`);
-                        }
-                    }
-                } catch (error) {
-                    console.error('Fetch chunk failed:', error);
-                    isTesting = false;
-                    throw error;
-                }
-            };
-
-            const concurrentFetches = 5;
-            const fetchPromises = [];
-            for (let i = 0; i < concurrentFetches; i++) {
-                fetchPromises.push(fetchChunk());
-            }
-
-            const timeoutPromise = new Promise(resolve => {
-                setTimeout(() => {
-                    isTesting = false;
-                    resolve();
-                }, TEST_DURATION_SECONDS * 1000);
-            });
-
-            try {
-                await Promise.race([
-                    Promise.allSettled(fetchPromises),
-                    timeoutPromise
-                ]);
-
-                const endTime = performance.now();
-                const durationSeconds = (endTime - startTime) / 1000;
-
-                resultsElement.classList.remove('testing'); // Remove testing animation
-
-                if (durationSeconds === 0 || totalBytesDownloaded === 0) {
-                    resultsElement.innerHTML = '<p>Test completed without significant data transfer or too quickly to measure.</p>';
-                    resultsElement.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                    resultsElement.style.color = '#e0f2f7';
-                    return;
-                }
-
-                const finalSpeedMbps = ((totalBytesDownloaded * 8) / (durationSeconds * 1000000)).toFixed(2);
-                resultsElement.innerHTML = `<p>Download Speed: <br><span class="speed-value">${finalSpeedMbps}</span> Mbps</p>`;
-                resultsElement.style.backgroundColor = 'rgba(140, 255, 192, 0.2)';
-                resultsElement.style.color = '#8cffc0';
-
-            } catch (error) {
-                console.error('Overall speed test failed:', error);
-                resultsElement.classList.remove('testing'); // Remove testing animation
-                let errorMessage = `Speed test failed: ${error.message}.`;
-
-                if (error.name === 'TypeError' && (error.message.includes('network error') || error.message.includes('Failed to fetch'))) {
-                     errorMessage += '<br><span class="error-message">This is often due to CORS (Cross-Origin Resource Sharing) policy. The target server must allow requests from this webpage\'s origin for an accurate measurement.</span>';
-                } else if (error.message.includes('Response body is not readable')) {
-                    errorMessage += '<br><span class="error-message">The server might not be configured to allow direct reading of its response body from this origin.</span>';
-                }
-
-                resultsElement.innerHTML = `<p>${errorMessage}</p>`;
-                resultsElement.style.backgroundColor = 'rgba(255, 153, 153, 0.2)';
-                resultsElement.style.color = '#ff9999';
-            }
-        }
-
-        // Initialize the dashboard on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            if (speedTestData.targets && speedTestData.targets.length > 0) {
-                renderTargets(speedTestData.targets);
-            } else {
-                targetsContainer.innerHTML = '<p class="error-message">No target servers available for testing.</p>';
-            }
-            resetButton.addEventListener('click', resetSpeedTest);
-        });
-    </script>
 </body>
 </html>
